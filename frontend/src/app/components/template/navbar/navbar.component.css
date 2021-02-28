@@ -1,0 +1,44 @@
+img {
+  width: 150px;
+}
+
+header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+nav {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+}
+
+nav button {
+  font-size: 1rem;
+  width: 8rem;
+  background-color: var(--yellow);
+  color: var(--black);
+  font-weight: 800;
+}
+
+nav button:hover {
+  background-color: var(--yellow-light);
+}
+
+.logo-links {
+  display: flex;
+  align-items: center;
+}
+
+.links a {
+  font-size: 1rem;
+  margin: 0 1rem;
+}
+
+.links a:first-child {
+  margin-left: 2rem;
+}

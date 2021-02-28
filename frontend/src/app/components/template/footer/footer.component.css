@@ -1,0 +1,71 @@
+footer {
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+}
+
+button {
+  background-color: var(--grey-dark);
+  border-radius: 10px;
+
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+button:hover {
+  background-color: var(--grey-dark-hover);
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo-sociais {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo-sociais > img {
+  width: 150px;
+  margin-right: 1rem;
+}
+
+.logo-sociais button {
+   width: 2rem;
+  height: 2rem;
+}
+
+.logo-sociais button img {
+  width: 20px;
+}
+
+.logo-sociais button {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.subir {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.subir p {
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.subir img {
+  width: 15px;
+}
+
+
+
