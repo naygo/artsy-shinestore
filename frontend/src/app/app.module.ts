@@ -26,7 +26,7 @@ import { ProductsModule } from './pages/products/products.module';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ProductsModule,
+    ProductsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

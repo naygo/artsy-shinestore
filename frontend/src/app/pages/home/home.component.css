@@ -1,26 +1,11 @@
-section.produtos-artesanais,
-section.tudo-com-cuidado {
+main {
   display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-
-h1 {
-  padding-bottom: 1rem;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 h2 {
   padding-bottom: 2rem;
-  font-weight: 600;
-  font-size: 3rem;
-
-}
-
-.linha {
-  border-top: 3px solid var(--orange);
-
-  width: 5%;
-  padding-bottom: 20px;
 }
 
 p {
@@ -28,115 +13,124 @@ p {
   font-size: 1.5em;
 }
 
-/********************
-    APRESENTACAO
-*********************/
+/**
+* *  ESPAÇAMENTO ENTRE SEÇÕES
+**/
+.produtos-artesanais {
+  margin: 10rem 0;
+}
+
+.tudo-com-cuidado {
+  margin-bottom: 10rem;
+}
+
+/**
+* *  APRESENTAÇÃO
+**/
 
 .apresentacao {
   height: 80vh;
-
   text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr ;
+  gap: 1rem;
+
+  align-items: center;
 }
 
 .apresentacao .imagem {
   width: 100%;
-  height: 100%;
-
-  background-image: url(../../../assets/banner.png);
-  background-size: cover;
 }
 
 .apresentacao .imagem img {
   width: 100%;
-  max-height: 400px;
 }
 
-/**************************
-    PRODUTOS ARTESANAIS
-***************************/
-
-.produtos-artesanais {
+/**
+* *  PRODUTOS ARTESANAIS &&
+* *  TUDO COM CUIDADO
+**/
+section.produtos-artesanais,
+section.tudo-com-cuidado {
   display: flex;
   align-items: center;
   flex-direction: row;
-
-  margin: 10rem 0;
 }
 
-.produtos-artesanais div:first-child {
-  text-align: center;
-  margin-right: 3rem;
-}
-
-/*********************
-    TUDO COM CUIDADO
-**********************/
+.produtos-artesanais,
 .tudo-com-cuidado {
-  margin: 10rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  justify-content: center;
 }
 
+.produtos-artesanais .texto,
+.tudo-com-cuidado .texto {
+  width: 50%;
+}
+
+.linha {
+  border-top: 3px solid var(--pink);
+
+  width: 5%;
+  padding-bottom: 20px;
+}
+
+/**
+* *  TUDO COM CUIDADO
+**/
 .tudo-com-cuidado .texto {
   text-align: right;
-  margin-right: 3rem;
-}
-
-.tudo-com-cuidado div:last-child {
-  text-align: center;
 }
 
 .tudo-com-cuidado .linha {
   margin-left: auto;
 }
 
-/*********************
-    CONFERIR PRODUTOS
-**********************/
-.conteudo {
+/**
+* *  CONFERIR PRODUTOS
+**/
+.conferir-produtos {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+
 
   background-color: var(--grey-dark);
+  color: var(--white);
   border-radius: 5px;
   padding: 3rem 5rem;
 }
 
-.conferir-produtos {
-  margin: 10rem 0;
-
+.conferir-produtos .div-botao,
+.conferir-produtos.texto {
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
-.conferir-produtos .texto {
-  width: 50%;
-}
-
-.conferir-produtos .div-botao {
-  text-align: center;
-}
-
-.conferir-produtos button {
-  background-color: var(--orange);
+.conferir-produtos .div-botao button {
   padding: 2rem 3rem;
-
   font-size: 1.5rem;
-  font-weight: 700;
 }
 
-.conferir-produtos button:hover {
-  background-color: var(--orange-light);
+.conferir-produtos .div-botao button:hover {
+  background-color: var(--salmon);
 }
 
 .conferir-produtos a {
   padding-bottom: 1px;
-  border-bottom: 3px solid var(--orange);
+  border-bottom: 3px solid var(--salmon);
 }
 
 .conferir-produtos a:hover {
-  color: var(--orange);
+  color: var(--salmon);
 }

@@ -1,25 +1,28 @@
-<div class="produtos">
-  <h2>PRODUTOS</h2>
+<main>
+  <section class="produtos">
+    <div>
+      <h2>PRODUTOS</h2>
+    </div>
 
-  <div class="produtos-container">
-    <form [formGroup]="form" (submit)="sendForm()" action="">
+    <div class="pesquisa">
+      <form [formGroup]="form" (submit)="sendForm()">
+            <p-dropdown
+              id="categorias"
+              [options]="categorias"
+              [placeholder]="placeholder"
+              formControlName="categorias"
+              panelStyleClass="fundo-p-dropdown">
+            </p-dropdown>
 
-      <div class="pesquisa">
-        <p-dropdown id="categorias"
-          [options]="categorias"
-          [placeholder]="placeholder"
-          formControlName="categorias"
-          panelStyleClass="fundo-p-dropdown">
-        </p-dropdown>
+            <div class="p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input type="text" placeholder="Pesquisar" pInputText />
+            </div>
+        </form>
+    </div>
+  </section>
 
-        <div class="p-input-icon-right">
-          <i class="pi pi-search"></i>
-          <input type="text" pInputText />
-        </div>
-
-      </div>
-    </form>
-
+  <section class="cards">
     <div class="produtos-listagem">
       <div>
         <img src="../../../assets/imagem1.png" alt="">
@@ -45,6 +48,6 @@
         <img src="../../../assets/imagem1.png" alt="">
       </div>
     </div>
+  </section>
 
-  </div>
-</div>
+</main>

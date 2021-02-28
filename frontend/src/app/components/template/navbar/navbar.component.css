@@ -1,44 +1,43 @@
 img {
-  width: 150px;
+  width: 300px;
 }
 
 header {
   display: flex;
-  justify-content: flex-start;
 }
 
 nav {
   width: 100%;
+  padding: 2rem 0;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
 
-  margin-bottom: 2rem;
+button, a {
+  font-size: 1.2rem;
 }
 
 nav button {
-  font-size: 1rem;
   width: 8rem;
-  background-color: var(--yellow);
-  color: var(--black);
-  font-weight: 800;
+  border-radius: 5px;
+  margin-left: 1rem;
+
+  transition: hover 0.2s;
 }
 
 nav button:hover {
-  background-color: var(--yellow-light);
+  background-color: var(--salmon);
 }
 
-.logo-links {
+.links-botao {
   display: flex;
   align-items: center;
 }
 
 .links a {
-  font-size: 1rem;
   margin: 0 1rem;
 }
 
-.links a:first-child {
-  margin-left: 2rem;
-}
+
