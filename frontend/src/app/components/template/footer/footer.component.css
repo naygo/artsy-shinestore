@@ -40,6 +40,11 @@ button:hover {
   margin-right: 1rem;
 }
 
+.logo-sociais button img {
+  width: 20px;
+  color: var(--white);
+}
+
 .subir {
   display: flex;
   flex-direction: row;

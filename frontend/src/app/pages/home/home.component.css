@@ -13,6 +13,17 @@ p {
   font-size: 1.5em;
 }
 
+.apresentacao > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.apresentacao > div .underline {
+  width: 25%;
+}
+
 /**
 * *  ESPAÇAMENTO ENTRE SEÇÕES
 **/
@@ -104,7 +115,7 @@ section.tudo-com-cuidado {
   align-items: center;
   gap: 4rem;
 
-
+  opacity: 0.7;
   background-color: var(--grey-dark);
   color: var(--white);
   border-radius: 5px;

@@ -12,13 +12,15 @@ import { HomeComponent } from './pages/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { ProductsModule } from './pages/products/products.module';
+import { ContactModule } from './pages/contact/contact.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { ProductsModule } from './pages/products/products.module';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ProductsModule
+    ProductsModule,
+    ContactModule
   ],
   providers: [],
   bootstrap: [AppComponent]
