@@ -115,8 +115,9 @@ section.tudo-com-cuidado {
   align-items: center;
   gap: 4rem;
 
-  opacity: 0.7;
-  background-color: var(--grey-dark);
+  background-color: var(--grey-background);
+  backdrop-filter: blur(5px);
+
   color: var(--white);
   border-radius: 5px;
   padding: 3rem 5rem;

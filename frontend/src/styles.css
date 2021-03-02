@@ -2,8 +2,10 @@
 :root {
   --black: #121214;
   --grey: #a7a9be;
+  --grey-cancel: #8e8fa1;
   --grey-dark: #202024;
   --grey-dark-hover: #29292e;
+  --grey-background: #cbcbd410;
   --white: #fffffe;
   --orange: #F46D32;
   --orange-light: #F0804F;
@@ -54,6 +56,10 @@ body, input, textarea, button {
   color: var(--grey);
 }
 
+label {
+  color: var(--white);
+}
+
 p {
   font: 300 1rem 'Inter', sans-serif;
 }
@@ -81,12 +87,6 @@ a {
   width: 10%;
 }
 
-a:hover,
-a:active {
-  padding-bottom: 3px;
-  border-bottom: 3px solid var(--yellow);
-}
-
 button {
     height: 3rem;
 
@@ -97,18 +97,29 @@ button {
     border: 0;
     border-radius: 5px !important;
 
-    background: var(--yellow);
     color: var(--white);
     cursor: pointer;
     font-weight: 700;
 
     transition: 0.2s !important;
+
+    text-transform: uppercase;
+}
+
+.confirm {
+  background: var(--yellow);
+}
+
+.cancel {
+  background: var(--grey-cancel);
+}
+
+button:hover {
+  background: var(--salmon);
 }
 
 /* COMPONENTES DO PRIMENG */
-/*
-* * DROPDOWN E INPUTTEXT
-*/
+
 input.p-inputtext,
 p-dropdown .p-dropdown {
   box-shadow: none !important;

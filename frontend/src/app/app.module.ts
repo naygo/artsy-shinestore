@@ -13,6 +13,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { ProductsModule } from './pages/products/products.module';
 import { ContactModule } from './pages/contact/contact.module';
+import { LoginModule } from './pages/login/login.module';
+import { RegisterModule } from './pages/register/register.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,6 @@ import { ContactModule } from './pages/contact/contact.module';
     NavbarComponent,
     FooterComponent,
     HomeComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,9 @@ import { ContactModule } from './pages/contact/contact.module';
     AppRoutingModule,
     FormsModule,
     ProductsModule,
-    ContactModule
+    ContactModule,
+    LoginModule,
+    RegisterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,4 +12,8 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goInstagram() {
+    window.open('https:\\instagram.com/artsy_shinestore?igshid=1gjinjwveduiw', "_blank");
+  }
+
 }

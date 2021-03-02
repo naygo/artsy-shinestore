@@ -1,0 +1,82 @@
+main {
+  display: flex;
+  align-items: center;
+
+  margin: 3rem;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--grey-background);
+  backdrop-filter: blur(4px);
+  padding: 2rem;
+  border-radius: 10px;
+
+  max-width: 60%;
+}
+
+.login img {
+  width: 500px;
+  margin-bottom: 2rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.cadastro {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.cadastro a {
+  text-align: right;
+  text-decoration: underline;
+  color: var(--white);
+  margin-top: 2rem;
+  margin-left: 5px;
+
+  cursor: pointer;
+}
+
+.cadastro a:hover {
+  color: var(--salmon);
+}
+
+
+
+.inputs input:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.inputs label {
+  margin-bottom: 0.5rem;
+}
+
+.inputs label:last-of-type {
+  margin-top: 2rem;
+}
+
+.inputs button {
+  margin-top: 2rem;
+}
+
+.botoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.botoes button {
+  padding: 1rem 1.5rem;
+  width: 100%;
+}

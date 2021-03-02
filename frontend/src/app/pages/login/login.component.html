@@ -1,0 +1,24 @@
+<main>
+  <div class="login">
+    <div class="imagem">
+      <img src="../../../assets/logo.png" alt="">
+    </div>
+
+    <div class="inputs">
+      <label>Email</label>
+      <input type="text" pInputText/>
+
+      <label>Senha</label>
+      <input type="text" pInputText/>
+
+      <div class="botoes">
+        <button routerLink="" class="confirm">Entrar</button>
+        <button (click)="voltar()" class="cancel">Cancelar</button>
+      </div>
+
+      <div class="cadastro">
+        <p>Não tem uma conta?<a routerLink="/register">Cadastre-se aqui</a></p>
+      </div>
+    </div>
+  </div>
+</main>

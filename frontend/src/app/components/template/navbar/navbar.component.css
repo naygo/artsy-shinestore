@@ -40,4 +40,11 @@ nav button:hover {
   margin: 0 1rem;
 }
 
+.links a:hover,
+.links a:active,
+.links a:focus {
+  padding-bottom: 3px;
+  border-bottom: 2px solid var(--yellow);
+}
+
 

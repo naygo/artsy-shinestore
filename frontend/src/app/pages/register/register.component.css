@@ -1,0 +1,56 @@
+main {
+  display: flex;
+  align-items: center;
+
+  margin: 3rem 0;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--grey-background);
+  backdrop-filter: blur(4px);
+  padding: 2rem;
+  border-radius: 10px;
+
+  max-width: 60%;
+}
+
+.register img {
+  width: 500px;
+  margin-bottom: 2rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.inputs input {
+  margin-bottom: 2rem;
+}
+
+.inputs label {
+  margin-bottom: 0.5rem;
+}
+
+.inputs button {
+  margin-top: 2rem;
+}
+
+.botoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.botoes button {
+  padding: 1rem 1.5rem;
+  width: 100%;
+}
