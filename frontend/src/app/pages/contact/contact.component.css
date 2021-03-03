@@ -49,24 +49,49 @@ label {
 
 .inputs input {
   margin-bottom: 2rem;
-
   width: 90%;
+}
+
+.inputs textarea {
+  width: 90%;
+  height: 200px;
+  margin-bottom: 2rem;
+
+  overflow-y: auto;
+  resize: none;
 }
 
 .imagem {
   text-align: center;
 }
 
-button {
-  width: 30%;
-  background: var(--green-whatsapp);
+.conteudo .botoes {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
 }
 
-button:hover {
+.botoes .enviar {
+  width: 60%;
+}
+
+.botoes .whatsapp {
+  width: 10%;
+  background: var(--green-whatsapp);
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botoes .whatsapp img {
+  width: 25px;
+
+}
+
+.botoes .whatsapp:hover {
   background: var(--green-whatsapp-light);
 }
 
-button img {
-  width: 25px;
-  margin-right: 1rem;
-}

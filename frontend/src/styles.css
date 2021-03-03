@@ -144,15 +144,44 @@ p-dropdown .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight
   color: var(--black) !important;
 }
 
-.fundo-p-dropdown {
+.fundo-p-dropdown,
+textarea {
   background: var(--grey-dark) !important;
   color: var(--white);
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 input.p-inputtext:enabled:focus,
 input.p-inputtext:hover,
 p-dropdown .p-dropdown:focus-within,
-p-dropdown .p-dropdown:hover {
+p-dropdown .p-dropdown:hover,
+textarea:hover,
+textarea:focus {
   border: 1px solid var(--salmon) !important
+}
+
+textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+textarea {
+  cursor: auto;
+  border-radius: 5px;
+}
+
+textarea::-webkit-scrollbar-button:start:decrement,
+textarea::-webkit-scrollbar-button:end:increment  {
+  background-color: transparent;
+  height: 100%;
+}
+
+textarea::-webkit-scrollbar-track-piece  {
+  background-color: var(--white);
+}
+
+textarea::-webkit-scrollbar-thumb:vertical {
+  height: 10px;
+  background-color: var(--salmon);
+  border: 1px solid var(--white);
+  -webkit-border-radius: 16px;
 }
