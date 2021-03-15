@@ -1,26 +1,26 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
 
-@Entity('products')
-class Product {
+@Entity('orders')
+class Order {
 
     @PrimaryColumn()
     readonly id: string;
 
     @Column()
-    name: string;
+    user_id: number;
 
     @Column()
-    value: number;
+    product_id: number;
 
     @Column()
-    description: string;
+    quantity: number;
 
     @Column()
-    img_link: string;
+    status_id: number;
 
     @Column()
-    category_id: number;
+    date: string;
 
     @CreateDateColumn()
     created_at: Date;
@@ -29,6 +29,7 @@ class Product {
         if(!this.id)
             this.id = uuid();
     }
+
 }
 
-export { Product }
+export { Order }

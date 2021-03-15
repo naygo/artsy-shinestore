@@ -4,20 +4,22 @@
       <img src="../../../assets/logo.png" alt="">
     </div>
 
-    <div class="inputs">
-      <label>Nome</label>
-      <input type="text" pInputText/>
+    <form [formGroup]="form" (submit)="register()">
+      <div class="inputs">
+        <label>Nome</label>
+        <input formControlName="name" type="text" pInputText/>
 
-      <label>Email</label>
-      <input type="text" pInputText/>
+        <label>Email</label>
+        <input formControlName="email" type="text" pInputText/>
 
-      <label>Senha</label>
-      <input type="text" pInputText/>
+        <label>Senha</label>
+        <input formControlName="password" type="password" pInputText/>
 
-      <div class="botoes">
-        <button routerLink="" class="confirm">Cadastrar</button>
-        <button (click)="voltar()" class="cancel">Cancelar</button>-
+        <div class="botoes">
+          <button class="confirm">Cadastrar</button>
+          <button (click)="voltar()" class="cancel">Cancelar</button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </main>

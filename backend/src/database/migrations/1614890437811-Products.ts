@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class Products1614802364288 implements MigrationInterface {
+export class Products1614890437811 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -18,7 +18,7 @@ export class Products1614802364288 implements MigrationInterface {
                     },
                     {
                         name: 'value',
-                        type: 'varchar'
+                        type: 'double'
                     },
                     {
                         name: 'description',
@@ -29,8 +29,9 @@ export class Products1614802364288 implements MigrationInterface {
                         type: 'varchar'
                     },
                     {
-                        name: 'category',
-                        type: 'varchar'
+                        name: 'category_id',
+                        type: 'integer',
+                        isNullable: true
                     },
                     {
                         name: 'created_at',
@@ -38,6 +39,16 @@ export class Products1614802364288 implements MigrationInterface {
                         default: 'now()'
                     },
                 ],
+                foreignKeys: [
+                    {
+                        name: 'FKCategory',
+                        referencedTableName: 'categories',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['category_id'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'CASCADE'
+                    }
+                ]
             })
         );
     }
@@ -45,4 +56,5 @@ export class Products1614802364288 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('products');
     }
+
 }

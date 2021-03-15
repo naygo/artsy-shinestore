@@ -16,9 +16,8 @@ class ProductController {
     }
     
     async create(req: Request, res: Response) {
-        const { name, value, description, category } = req.body;
-        const filePath = req.file.path;
-
+        const { name, value, description, category_id } = req.body;
+        const fileName = req.file.originalname;
 
         const productsRepository = getCustomRepository(ProductsRepository);
 
@@ -26,8 +25,8 @@ class ProductController {
             name, 
             value, 
             description,
-            img_link: filePath, 
-            category
+            img_link: fileName, 
+            category_id
         });
 
         await productsRepository.save(product);

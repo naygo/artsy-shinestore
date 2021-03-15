@@ -1,12 +1,15 @@
+import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm'
+import bcryptjs from 'bcryptjs';
 import * as yup from 'yup';
+import { config } from '../config/config';
 
 import { UsersRepository } from '../repositories/UsersRepository';
 
 class UserController {
 
-    async index(req: Request, res: Response) {
+    async findAll(req: Request, res: Response) {
         
         const usersRepository = getCustomRepository(UsersRepository);
 
@@ -14,14 +17,27 @@ class UserController {
 
         return res.json(users);
     }
+
+    async findOne(req: Request, res: Response) {
+        const { id } = req.params;
+
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const user = await usersRepository.findOne(id);
+
+        return res.json(user);
+    }
     
     async create(req: Request, res: Response) {
+        const { profile_id } = req.params;
         const { name, email, password } = req.body;
+
+        const usersRepository = getCustomRepository(UsersRepository);
 
         const schema = yup.object().shape({
             name: yup.string().required(),
             email: yup.string().email().required(),
-            password: yup.string().required()
+            password: yup.string().required(),
         });
 
         try {
@@ -31,8 +47,6 @@ class UserController {
             return res.status(400).json({ error: err });
         }
 
-        const usersRepository = getCustomRepository(UsersRepository);
-
         const userAlreadyExists = await usersRepository.findOne({
             email
         });
@@ -41,7 +55,10 @@ class UserController {
             return res.status(400).json({error: 'User already exists!'});
 
         const user = usersRepository.create({
-            name, email, password
+            profile_id: +profile_id,
+            name, 
+            email,
+            password: await bcryptjs.hash(password, 10)
         });
 
         await usersRepository.save(user);
@@ -55,18 +72,22 @@ class UserController {
         const usersRepository = getCustomRepository(UsersRepository);
 
         const userExists = await usersRepository.findOne({ email });
-        console.log(userExists);
         
         if(!userExists)
             return res.status(400).json({error: 'User does not exists'});
 
-        // if (!await bcrypt.compare(password, user.password))
-        //     return res.status(401).json({ error: 'Senha inválida, tente novamente!' });
+        if (!await bcryptjs.compare(password, userExists.password))
+            return res.status(401).json({ error: 'Senha inválida, tente novamente!' });
 
-        if(password != userExists.password)
-            return res.status(400).json({error: 'Incorret password'});
-
-        return res.status(200).json({ message: 'User logged!'});
+        return res.status(200).json({
+            userExists,
+            token: jwt.sign({
+                id: userExists.id,
+                name: userExists.name,
+                email,
+                profile: (userExists.profile_id == 1) ? 'Admin' : 'Cliente'
+            }, config.SECRET, { expiresIn: 86400 })
+        });
     }
 
     async update (req: Request, res: Response) {

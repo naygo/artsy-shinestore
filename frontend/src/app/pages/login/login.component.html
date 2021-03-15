@@ -4,21 +4,23 @@
       <img src="../../../assets/logo.png" alt="">
     </div>
 
-    <div class="inputs">
-      <label>Email</label>
-      <input type="text" pInputText/>
+    <form [formGroup]="form" (submit)="login()">
+      <div class="inputs">
+        <label>Email</label>
+        <input formControlName="email" type="text" pInputText/>
 
-      <label>Senha</label>
-      <input type="text" pInputText/>
+        <label>Senha</label>
+        <input formControlName="password" type="password" pInputText/>
 
-      <div class="botoes">
-        <button routerLink="" class="confirm">Entrar</button>
-        <button (click)="voltar()" class="cancel">Cancelar</button>
+        <div class="botoes">
+          <button class="confirm">Entrar</button>
+          <button (click)="voltar()" class="cancel">Cancelar</button>
+        </div>
+
+        <div class="cadastro">
+          <p>Não tem uma conta?<a routerLink="/register">Cadastre-se aqui</a></p>
+        </div>
       </div>
-
-      <div class="cadastro">
-        <p>Não tem uma conta?<a routerLink="/register">Cadastre-se aqui</a></p>
-      </div>
-    </div>
+    </form>
   </div>
 </main>
