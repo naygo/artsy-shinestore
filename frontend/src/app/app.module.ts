@@ -15,16 +15,16 @@ import { PagesModule } from './pages/pages.module';
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
 
     PagesModule,
+    CoreModule
   ],
   exports: [
     FooterComponent

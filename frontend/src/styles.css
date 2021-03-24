@@ -76,6 +76,7 @@ h1, h2 {
 a {
   color: var(--white);
   text-decoration: none;
+  cursor: pointer;
 
   font-weight: 400;
   transition: 0.2s;

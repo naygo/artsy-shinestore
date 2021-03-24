@@ -12,8 +12,7 @@ const API_URL = environment.API_URL;
 export class AuthService {
 
   constructor(
-    private http: HttpClient,
-    private userService: UserService
+    private http: HttpClient
   ) { }
 
   authenticate(email: string, password: string) {
