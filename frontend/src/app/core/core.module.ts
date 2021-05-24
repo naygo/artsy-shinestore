@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ViewsModule } from './../views/views.module';
-import { HomeComponent } from '../pages/home/home.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { PagesModule } from '../pages/pages.module';
+import { PerfilModule } from '../components/perfil/perfil.module';
+import { FooterModule } from '../components/footer/footer.module';
+import { RequestTokenInterceptor } from './auth/interceptors/request-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,10 +21,19 @@ import { PagesModule } from '../pages/pages.module';
     AppRoutingModule,
 
     ViewsModule,
-    PagesModule
+    PagesModule,
+    PerfilModule,
+    FooterModule
   ],
   exports: [
     NavbarComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestTokenInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule { }

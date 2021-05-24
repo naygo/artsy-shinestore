@@ -7,13 +7,19 @@ const KEY = 'tokenUser';
 })
 export class TokenService {
 
-  constructor() { }
-
-  setToken(token: string) {
-    return window.localStorage.setItem(KEY, token);
+  hasToken() {
+    return this.getToken();
   }
 
-  getToken() {
+  setToken(token: string) {
+    window.localStorage.setItem(KEY, token);
+  }
+
+  getToken(): string {
     return window.localStorage.getItem(KEY);
+  }
+
+  removeToken() {
+    window.localStorage.removeItem(KEY);
   }
 }

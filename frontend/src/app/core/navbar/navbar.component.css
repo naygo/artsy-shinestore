@@ -2,20 +2,11 @@ img {
   width: 300px;
 }
 
-header {
-  display: flex;
+li, button {
+  margin-left: 2rem;
 }
 
-nav {
-  width: 100%;
-  padding: 2rem 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-button, a {
+a {
   font-size: 1.2rem;
 }
 
@@ -23,28 +14,4 @@ nav button {
   width: 8rem;
   border-radius: 5px;
   margin-left: 1rem;
-
-  transition: hover 0.2s;
 }
-
-nav button:hover {
-  background-color: var(--salmon);
-}
-
-.links-botao {
-  display: flex;
-  align-items: center;
-}
-
-.links a {
-  margin: 0 1rem;
-}
-
-.links a:hover,
-.links a:active,
-.links a:focus {
-  padding-bottom: 3px;
-  border-bottom: 2px solid var(--yellow);
-}
-
-

@@ -30,7 +30,7 @@ export class Products1614890437811 implements MigrationInterface {
                     },
                     {
                         name: 'category_id',
-                        type: 'integer',
+                        type: 'uuid',
                         isNullable: true
                     },
                     {

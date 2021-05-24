@@ -34,8 +34,9 @@ export class RegisterComponent implements OnInit {
     const password = this.form.get('password').value;
 
     this.userService.register(name, email, password).subscribe(() => {
-      console.log('registrou');
-    });
+      this.router.navigate(['/']);
+    },
+    err => console.log(err));
   }
 
   voltar() {

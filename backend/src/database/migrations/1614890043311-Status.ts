@@ -9,7 +9,8 @@ export class Status1614890043311 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'integer'
+                        type: 'integer',
+                        isPrimary: true
                     }, 
                     {
                         name: 'status',

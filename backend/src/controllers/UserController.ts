@@ -86,14 +86,14 @@ class UserController {
                 name: userExists.name,
                 email,
                 profile: (userExists.profile_id == 1) ? 'Admin' : 'Cliente'
-            }, config.SECRET, { expiresIn: 86400 })
+            }, config.SECRET, { expiresIn: 60 })
         });
     }
 
     async update (req: Request, res: Response) {
         const { id } = req.params;
         const { name, email, password } = req.body;
-
+//
         const usersRepository = getCustomRepository(UsersRepository);
 
         const userExists = await usersRepository.findOne(id);
@@ -101,11 +101,27 @@ class UserController {
         if(!userExists)
             return res.status(400).json({ error: 'User not found' });
 
-        //const user = usersRepository.update();
 
-        //await usersRepository.save(user);
+        await usersRepository.save({
+            name, 
+            email,
+            password: await bcryptjs.hash(password, 10)
+        });
 
-        //return res.json(user);
+        return res.status(201);
+    }
+
+    async delete(req: Request, res: Response) {
+        
+        const { id } = req.params;
+
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const user = usersRepository.findOne(id);
+
+        await usersRepository.delete({id: id});
+
+        return res.status(201).json(user);        
     }
 };
 

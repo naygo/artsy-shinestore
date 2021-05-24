@@ -14,11 +14,11 @@ export class Orders1614892490080 implements MigrationInterface {
                     },
                     {
                         name: 'user_id',
-                        type: 'integer'
+                        type: 'uuid'
                     },
                     {
                         name: 'product_id',
-                        type: 'integer'
+                        type: 'uuid'
                     },
                     {
                         name: 'quantity',

@@ -1,8 +1,5 @@
-main {
-  display: flex;
-  align-items: center;
-
-  margin: 3rem;
+/* main{
+  margin: auto 0;
 }
 
 .login {
@@ -79,4 +76,39 @@ main {
 .botoes button {
   padding: 1rem 1.5rem;
   width: 100%;
-}
+} */
+
+  .user_card {
+    height: 400px;
+    width: 400px;
+    margin-top: auto;
+    margin-bottom: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255);
+    border-top: 0;
+    border-radius: 5px;
+
+  }
+  .brand_logo_container {
+    position: absolute;
+    height: 170px;
+    width: 530px;
+    top: -75px;
+    background: rgb(48, 47, 47);
+    border: 2px solid rgba(255, 255, 255);
+    border-radius: 50%;
+    padding: 10px;
+    text-align: center;
+  }
+  .brand_logo {
+    height: 150px;
+    width: 500px;
+  }
+  .form_container {
+    margin-top: 100px;
+  }
+  

@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
 
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    DropdownModule
   ],
   providers: [
     UserService

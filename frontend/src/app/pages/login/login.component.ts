@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../shared/services/user.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private formbuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.form = this.formbuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -30,9 +32,20 @@ export class LoginComponent implements OnInit {
     const email = this.form.get('email').value;
     const password = this.form.get('password').value;
 
-    this.userService.login(email, password).subscribe(() => {
-      console.log('logou');
-    });
+    this.authService
+      .authenticate(email, password)
+      .subscribe(
+        () => {
+          const typeUser = this.userService.getTypeProfile();
+
+          typeUser === 'Admin'
+            ? this.router.navigate(['admin/inicio'])
+            : this.router.navigate(['cliente/inicio']);
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   voltar() {

@@ -32,6 +32,37 @@ class ProductController {
         await productsRepository.save(product);
 
         return res.status(201).json(product);
+    } 
+
+    async update(req: Request, res: Response) {
+        const { id } = req.params;
+        const { name, value, description, category_id } = req.body;
+        const fileName = req.file.originalname;
+
+        const productsRepository = getCustomRepository(ProductsRepository);
+
+        const product = productsRepository.update({ id }, {
+            name, 
+            value, 
+            description,
+            img_link: fileName, 
+            category_id
+        });
+
+        return res.status(201).json(product);  
+    }
+
+    async delete(req: Request, res: Response) {
+        
+        const { id } = req.params;
+
+        const productsRepository = getCustomRepository(ProductsRepository);
+
+        const product = productsRepository.findOne(id);
+
+        await productsRepository.delete(id);
+
+        return res.status(201).json(product);        
     }
 }
 

@@ -1,0 +1,22 @@
+label, input {
+  margin-bottom: 1rem;
+}
+
+label {
+  color: #495057;
+}
+
+input {
+  padding: 0.5rem;
+  color: black;
+}
+
+button {
+  padding: 0 1rem;
+  margin-left: 1rem;
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+}

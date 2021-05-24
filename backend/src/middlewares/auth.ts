@@ -9,7 +9,7 @@ module.exports = (req: Request, res: Response, next: NextFunction ) => {
     if(!authHeader)
         return res.status(401).json({ error: 'No token provided' });
 
-    const parts: string[] = authHeader.split(' ');
+    const parts = authHeader.split(' ');
 
     // Bearer dnasnd82h9en8h2ne21ne912n98ndas
     if (parts.length !== 2)
@@ -19,15 +19,15 @@ module.exports = (req: Request, res: Response, next: NextFunction ) => {
 
     if(!/^Bearer$/i.test(scheme))
         return res.status(401).json({ error: 'Token malformatted' });
-
-    jwt.verify(token, config.SECRET, (err, decoded) => {
-
-        if(err)
+        
+        
+    jwt.verify(token, config.SECRET, (err, decoded: any) => {
+        
+        if(err){          
             return res.status(401).json({ error: 'Token invalid' });
+        }
 
-        //req.user = { id: decoded.id };
-        console.log('----------------------\n',decoded , '\n----------------------');
-
+        req.user = decoded?.id;
         return next();
     })
 
