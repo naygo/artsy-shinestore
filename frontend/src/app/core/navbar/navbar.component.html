@@ -1,0 +1,130 @@
+<!-- <header class="container" id="topo">
+  <nav class="row">
+
+    <div class="col logo">
+      <img src="../../../assets/logo.png" alt="Logo">
+    </div>
+
+    <div class="col" [ngSwitch]="profile">
+
+      <div *ngSwitchCase="undefined">
+        <div class="links-botao">
+          <div class="links">
+            <a routerLink="/">Início</a>
+            <a routerLink="/produtos">Produtos</a>
+            <a routerLink="/contato">Contato</a>
+          </div>
+
+          <div>
+            <button routerLink="login" class="confirm">ENTRAR</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'Admin'">
+        <div class="links-botao">
+          <div class="links">
+            <a [routerLink]="['produtos']">Produtos</a>
+            <a [routerLink]="['categorias']">Categorias</a>
+            <a [routerLink]="['entregas']">Entregas</a>
+            <a [routerLink]="['clientes']">Clientes</a>
+          </div>
+
+          <div>
+            <button (click)="logout()" class="cancel">SAIR</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'Cliente'">
+        <div class="links-botao">
+          <div class="links">
+            <a [routerLink]="['']">Início</a>
+            <a [routerLink]="['produtos']">Produtos</a>
+            <a [routerLink]="['contato']">Contato</a>
+          </div>
+
+          <div>
+            <button (click)="logout()" class="cancel">SAIR</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header> -->
+
+<header class="container-fluid">
+
+  <nav class="navbar navbar-expand-lg">
+    <div [ngSwitch]="profile" class="container-fluid">
+
+      <a class="navbar-brand">
+        <img src="../../../assets/logo.png" alt="Logo">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="pi pi-list"></i>
+      </button>
+
+      <div *ngSwitchCase="undefined" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="links navbar-nav me-auto mr-auto mb-2 mb-lg-0">
+          <li>
+            <a aria-current="page" [routerLink]="['inicio']">Inicío</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['produtos']">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['contato']">Contato</a>
+          </li>
+        </ul>
+
+        <button routerLink="login" class="confirm">ENTRAR</button>
+      </div>
+
+
+      <div *ngSwitchCase="'Admin'" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="links navbar-nav me-auto mr-auto mb-2 mb-lg-0">
+          <li>
+            <a [routerLink]="['inicio']">Inicio</a>
+          </li>
+          <li>
+            <a [routerLink]="['produtos']">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['categorias']">Categorias</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['entregas']">Entregas</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['clientes']">Clientes</a>
+        </ul>
+
+        <button (click)="logout()" class="cancel">SAIR</button>
+      </div>
+
+      <div *ngSwitchCase="'Cliente'" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="links navbar-nav me-auto mr-auto mb-2 mb-lg-0">
+          <li>
+            <a aria-current="page" [routerLink]="['inicio']">Inicío</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['produtos']">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['contato']">Contato</a>
+          </li>
+        </ul>
+
+        <button (click)="logout()" class="cancel">SAIR</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

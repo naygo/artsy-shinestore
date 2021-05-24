@@ -1,0 +1,9 @@
+<form [formGroup]="form" (submit)="salvar()">
+
+  <label for="">Nome categoria</label>
+  <input formControlName="category" type="text" pInputText/>
+
+  <div class="botoes">
+    <button type="submit" class="confirm">Salvar</button>
+  </div>
+</form>

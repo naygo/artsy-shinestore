@@ -1,23 +1,58 @@
-<main id="topo-register">
+<!-- <main id="topo-register">
   <div class="register">
     <div class="imagem">
       <img src="../../../assets/logo.png" alt="">
     </div>
 
-    <div class="inputs">
-      <label>Nome</label>
-      <input type="text" pInputText/>
+    <form [formGroup]="form" (submit)="register()">
+      <div class="inputs">
+        <label>Nome</label>
+        <input formControlName="name" type="text" pInputText/>
 
-      <label>Email</label>
-      <input type="text" pInputText/>
+        <label>Email</label>
+        <input formControlName="email" type="text" pInputText/>
 
-      <label>Senha</label>
-      <input type="text" pInputText/>
+        <label>Senha</label>
+        <input formControlName="password" type="password" pInputText/>
 
-      <div class="botoes">
-        <button routerLink="" class="confirm">Cadastrar</button>
-        <button (click)="voltar()" class="cancel">Cancelar</button>-
+        <div class="botoes">
+          <button class="confirm">Cadastrar</button>
+          <button (click)="voltar()" class="cancel">Cancelar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main> -->
+
+
+
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="user_card">
+      <div class="d-flex justify-content-center">
+        <div class="brand_logo_container">
+          <img src="../../../assets/logo.png" class="brand_logo" alt="Logo">
+        </div>
+      </div>
+      <div class="d-flex justify-content-center form_container">
+        <form [formGroup]="form" (submit)="register()">
+          <div class="inputs">
+            <label>Nome</label>
+            <input formControlName="name" type="text" pInputText/>
+
+            <label class="mt-4">Email</label>
+            <input formControlName="email" type="text" pInputText/>
+
+            <label class="mt-4">Senha</label>
+            <input formControlName="password" type="password" pInputText/>
+
+            <div class="d-flex">
+              <button class="w-50 m-2 mt-4 confirm">Cadastrar</button>
+              <button (click)="voltar()" class="w-50 mt-4 m-2 cancel">Cancelar</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</main>
+</div>

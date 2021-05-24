@@ -1,0 +1,17 @@
+img {
+  width: 300px;
+}
+
+li, button {
+  margin-left: 2rem;
+}
+
+a {
+  font-size: 1.2rem;
+}
+
+nav button {
+  width: 8rem;
+  border-radius: 5px;
+  margin-left: 1rem;
+}

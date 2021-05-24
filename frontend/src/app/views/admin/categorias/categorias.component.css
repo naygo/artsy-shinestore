@@ -1,0 +1,35 @@
+input {
+  border: 1px solid white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  width: 40%;
+  margin-bottom: 2rem;
+}
+
+.input-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3rem 0;
+}
+
+button {
+  font-size: 1rem;
+  padding: 0 5px;
+
+  background: var(--yellow);
+  border: 0;
+}
+
+button:hover {
+  background: var(--salmon) !important;
+}
+
+.acoes {
+  display: flex;
+}
+
+.acoes button {
+  padding: 0 1rem;
+  margin: 0.5rem;
+}

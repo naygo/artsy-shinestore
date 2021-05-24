@@ -2,39 +2,42 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrimeNGConfig } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/template/navbar/navbar.component';
-import { FooterComponent } from './components/template/footer/footer.component';
-import { HomeComponent } from './pages/home/home.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-import { ProductsModule } from './pages/products/products.module';
-import { ContactModule } from './pages/contact/contact.module';
-import { LoginModule } from './pages/login/login.module';
-import { RegisterModule } from './pages/register/register.module';
+import { FooterComponent } from './components/footer/footer.component';
+import { ViewsModule } from './views/views.module';
+import { CoreModule } from './core/core.module';
+import { PagesModule } from './pages/pages.module';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { TabelaComponent } from './components/tabela/tabela.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    HomeComponent,
+    TabelaComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
-    ProductsModule,
-    ContactModule,
-    LoginModule,
-    RegisterModule
+
+    PagesModule,
+    CoreModule,
+    ViewsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private primengConfig: PrimeNGConfig) {}
+
+    ngOnInit() {
+        this.primengConfig.ripple = true;
+    }
+ }

@@ -17,54 +17,36 @@
   --green-whatsapp-light: #46C26B;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 form, input {
   width: 100%;
 }
 
-app-root {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  width: 1200px;
+button.navbar-toggler {
+  background: var(--salmon);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 body {
   background: var(--black) url("./assets/fundo.svg");
   background-attachment: fixed;
   color: var(--white);
-
-  display: flex;
-  justify-content: center;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  margin-top: 2rem;
-}
-
-body, input, textarea, button {
-  font: 300 1rem 'JetBrains Mono', sans-serif;
+body, input, textarea, button, label {
+  font: 300 1rem 'JetBrains Mono', sans-serif !important;
   color: var(--grey);
-}
-
-label {
-  color: var(--white);
 }
 
 p {
   font: 300 1rem 'Inter', sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, label {
   color: var(--white);
 }
 
@@ -76,9 +58,14 @@ h1, h2 {
 a {
   color: var(--white);
   text-decoration: none;
+  cursor: pointer;
 
   font-weight: 400;
   transition: 0.2s;
+}
+
+a:hover {
+  color: var(--yellow);
 }
 
 .underline {
@@ -184,4 +171,23 @@ textarea::-webkit-scrollbar-thumb:vertical {
   background-color: var(--salmon);
   border: 1px solid var(--white);
   -webkit-border-radius: 16px;
+}
+
+
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+table {
+  color: white;
+}
+
+table th {
+  color: var(--yellow);
 }

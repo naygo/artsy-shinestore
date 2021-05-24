@@ -1,0 +1,60 @@
+footer {
+  margin-top: 5rem;
+  padding: 2rem 0;
+
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+button {
+  background-color: var(--yellow);
+  border-radius: 10px;
+
+  width: 2rem;
+  height: 2em;
+}
+
+button:hover {
+  background-color: var(--salmon);
+}
+
+.logo-sociais {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.logo-sociais > img {
+  width: 150px;
+  margin-right: 1rem;
+}
+
+.logo-sociais button img {
+  width: 20px;
+  color: var(--white);
+}
+
+.subir {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.subir p {
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+
+

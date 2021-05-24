@@ -20,7 +20,7 @@ class Product {
     img_link: string;
 
     @Column()
-    category: string;
+    category_id: number;
 
     @CreateDateColumn()
     created_at: Date;
