@@ -10,6 +10,7 @@ import { PagesModule } from '../pages/pages.module';
 import { PerfilModule } from '../components/perfil/perfil.module';
 import { FooterModule } from '../components/footer/footer.module';
 import { RequestTokenInterceptor } from './auth/interceptors/request-token.interceptor';
+import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,11 @@ import { RequestTokenInterceptor } from './auth/interceptors/request-token.inter
     NavbarComponent
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestTokenInterceptor,

@@ -16,22 +16,22 @@ const userControler = new UserController();
 const productControler = new ProductController();
 const categoryController = new CategoriesController();
 
-router.get('/users', userControler.findAll);
-router.get('/users/:id', userControler.findOne);
-router.post('/users/:profile_id', userControler.create);
-router.put('/users/:id', userControler.update);
-router.delete('/users/:id', userControler.delete);
+router.get('/users', authMiddleware, userControler.findAll);
+router.get('/users/:id', authMiddleware, userControler.findOne);
+router.put('/users/:id', authMiddleware, userControler.update);
+router.delete('/users/:id', authMiddleware, userControler.delete);
 
 router.post('/login', userControler.login);
+router.post('/users/:profile_id', userControler.create);
 
-router.get('/products', productControler.index);
-router.post('/products',  upload.single('img_link'), productControler.create);
-router.put('/products/:id',  productControler.update);
-router.delete('/products/:id',  productControler.delete);
+router.get('/products', authMiddleware, productControler.index);
+router.post('/products', authMiddleware, upload.single('img_link'), productControler.create);
+router.put('/products/:id', authMiddleware, productControler.update);
+router.delete('/products/:id', authMiddleware, productControler.delete);
 
-router.get('/categories',  categoryController.index);
-router.post('/categories', categoryController.create);
-router.put('/categories/:id',  categoryController.update);
-router.delete('/categories/:id',  categoryController.delete);
+router.get('/categories', authMiddleware, categoryController.index);
+router.post('/categories', authMiddleware, categoryController.create);
+router.put('/categories/:id', authMiddleware, categoryController.update);
+router.delete('/categories/:id', authMiddleware, categoryController.delete);
 
 export { router };
