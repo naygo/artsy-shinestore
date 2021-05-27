@@ -13,8 +13,7 @@ import { Category } from 'src/app/shared/models/category.model';
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',
-  styleUrls: ['./categorias.component.css'],
-  providers:[ DialogService ]
+  styleUrls: ['./categorias.component.css']
 })
 export class CategoriasComponent implements OnInit {
 

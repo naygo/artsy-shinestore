@@ -25,7 +25,7 @@ router.post('/login', userControler.login);
 router.post('/users/:profile_id', userControler.create);
 
 router.get('/products', authMiddleware, productControler.index);
-router.post('/products', authMiddleware, upload.single('img_link'), productControler.create);
+router.post('/products', authMiddleware,  productControler.create);
 router.put('/products/:id', authMiddleware, productControler.update);
 router.delete('/products/:id', authMiddleware, productControler.delete);
 

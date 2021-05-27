@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <form [formGroup]="form" (submit)="salvar()">
+
+    <div class="row">
+      <label>Nome produto</label>
+      <input formControlName="name" type="text" pInputText />
+    </div>
+
+    <div class="row">
+      <label>Descrição</label>
+      <input formControlName="description" type="text" pInputText />
+    </div>
+
+    <div class="row">
+      <label>Categoria</label>
+      <p-dropdown [options]="categories" formControlName="category" optionLabel="name"></p-dropdown>    
+    </div>
+    
+    <div class="row">
+      <label>Value</label>
+      <input formControlName="value" type="number" pInputText />
+    </div>
+
+    <div class="row mt-4">
+      <label>Imagem</label>
+      <input formControlName="image" (change)="fileChangeEvent($event)" type="file" />
+    </div>
+
+    <div class="botoes">
+      <button type="submit" class="confirm">Salvar</button>
+    </div>
+  </form>
+</div>

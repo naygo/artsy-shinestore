@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import { getCustomRepository, getRepository } from 'typeorm';
-//import * as yup from 'yup';
-
+import { readFileSync } from 'fs';
 import { ProductsRepository } from '../repositories/ProductsRepository';
+import * as util from 'util';
+
+const readFileAsync = util.promisify(readFileSync);
 
 class ProductController {
 
@@ -14,18 +16,20 @@ class ProductController {
 
         return res.status(200).json(products);
     }
-    
-    async create(req: Request, res: Response) {
-        const { name, value, description, category_id } = req.body;
-        const fileName = req.file.originalname;
 
+
+    async create(req: Request, res: Response) {
+        const { name, value, img_link, description, category_id } = req.body; 
+        
+        console.log(req.body);
+                
         const productsRepository = getCustomRepository(ProductsRepository);
 
         const product = productsRepository.create({
             name, 
             value, 
             description,
-            img_link: fileName, 
+            img_link, 
             category_id
         });
 
@@ -37,7 +41,7 @@ class ProductController {
     async update(req: Request, res: Response) {
         const { id } = req.params;
         const { name, value, description, category_id } = req.body;
-        const fileName = req.file.originalname;
+        const fileName = req.file.path;
 
         const productsRepository = getCustomRepository(ProductsRepository);
 
@@ -45,7 +49,7 @@ class ProductController {
             name, 
             value, 
             description,
-            img_link: fileName, 
+            //img_link, 
             category_id
         });
 

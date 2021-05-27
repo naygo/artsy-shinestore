@@ -17,6 +17,7 @@ import { ClientesComponent } from './views/admin/clientes/clientes.component';
 import { CategoriasComponent } from './views/admin/categorias/categorias.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { LoginGuard } from './core/guards/login.guard';
+import { ProdutosAdminComponent } from './views/admin/produtos-admin/produtos-admin.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
     canActivateChild: [ AdminGuard ],
     children: [
       { path: 'inicio', component: HomeComponent },
-      { path: 'produtos', component: ProductsComponent },
+      { path: 'produtos-admin', component: ProdutosAdminComponent },
       { path: 'clientes', component: ClientesComponent },
       { path: 'categorias', component: CategoriasComponent }
     ]

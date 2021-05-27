@@ -1,16 +1,21 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Table, HasMany, Column, Model, PrimaryKey, CreatedAt } from 'sequelize-typescript'
+import Order from './Order';
 
-@Entity('status')
-class Status {
+@Table
+class Status extends Model {
+    
+    @PrimaryKey
+    @Column
+    id: number
 
-    @PrimaryColumn()
-    readonly id: number;
-
-    @Column()
+    @Column
     status: string;
 
-    @CreateDateColumn()
+    @HasMany(() => Order)
+    orders: Order[]
+    
+    @CreatedAt
     created_at: Date;
 }
 
-export { Status }
+export default Status;

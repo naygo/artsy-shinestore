@@ -1,34 +1,35 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from 'uuid';
+import { Table, Column, Model, PrimaryKey, IsUUID, CreatedAt, Default, DataType, HasOne, ForeignKey } from 'sequelize-typescript'
+import Category from './Category';
 
-@Entity('products')
-class Product {
+@Table
+export class Product extends Model {
+    @IsUUID(4)
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column
+    id: string
 
-    @PrimaryColumn()
-    readonly id: string;
-
-    @Column()
+    @Column
     name: string;
 
-    @Column()
+    @Column
     value: number;
 
-    @Column()
+    @Column
     description: string;
 
-    @Column()
-    img_link: string;
+    @Column(DataType.BLOB)
+    img_link: number;
 
-    @Column()
-    category_id: number;
+    @ForeignKey(() => Category)
+    @Column
+    profile_id: number
 
-    @CreateDateColumn()
+    @HasOne(() => Category)
+    category: Category;
+
+    @CreatedAt
     created_at: Date;
-
-    constructor() {
-        if(!this.id)
-            this.id = uuid();
-    }
 }
 
-export { Product }
+export default Product;

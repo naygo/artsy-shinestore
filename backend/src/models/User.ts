@@ -1,34 +1,36 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from 'uuid';
+import { Table, Column, Model, PrimaryKey, IsUUID, CreatedAt, Default, DataType, IsEmail, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import Profile from './Profile';
 
-@Entity('users')
-class User {
+@Table
+class User extends Model {
+    @IsUUID(4)
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column
+    id: string
 
-    @PrimaryColumn()
-    readonly id: string;
-
-    @Column()
+    @Column
     name: string;
 
-    @Column()
+    @IsEmail
+    @Column
     email: string;
 
-    @Column()
+    @Column
+    description: string;
+
+    @Column
     password: string;
 
-    @Column()
-    profile_id: number;
+    @ForeignKey(() => Profile)
+    @Column
+    profile_id: number
 
-    @CreateDateColumn()
+    @BelongsTo(() => Profile)
+    profile: Profile
+
+    @CreatedAt
     created_at: Date;
+}
 
-    constructor() {
-        if(!this.id)
-            this.id = uuid();
-    }
-
-};
-
-export { User };
-
-
+export default User;

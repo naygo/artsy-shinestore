@@ -1,23 +1,20 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from 'uuid';
+import { Table, Column, Model, PrimaryKey, IsUUID, HasMany, CreatedAt, DataType, Default } from 'sequelize-typescript'
+import Product from './Product';
 
-@Entity('categories')
-class Category {
+@Table
+export class Category extends Model {
+    @PrimaryKey
+    @Column
+    id: number;
 
-    @PrimaryColumn()
-    readonly id: string;
-
-    @Column()
+    @Column
     category: string;
 
-    @CreateDateColumn()
+    @CreatedAt
     created_at: Date;
 
-    constructor() {
-        if(!this.id)
-            this.id = uuid();
-    }
-
+    @HasMany(() => Product)
+    product: Product[]
 }
 
-export { Category }
+export default Category;

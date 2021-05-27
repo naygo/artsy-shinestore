@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 
@@ -23,6 +23,12 @@ import { EditCategoriaComponent } from './admin/categorias/edit-categoria/edit-c
 import { DelCategoriaComponent } from './admin/categorias/del-categoria/del-categoria.component';
 import { DelClienteComponent } from './admin/clientes/del-cliente/del-cliente.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProdutosAdminComponent } from './admin/produtos-admin/produtos-admin.component';
+import { CategoryService } from '../shared/services/category.service';
+import { ProdutosService } from '../shared/services/produtos.service';
+import { UserService } from '../shared/services/user.service';
+import { AddProdutosComponent } from './admin/produtos-admin/add-produtos/add-produtos.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     EditCategoriaComponent,
     DelCategoriaComponent,
     DelClienteComponent,
+    ProdutosAdminComponent,
+    AddProdutosComponent,
   ],
   imports: [
     CommonModule,
@@ -48,10 +56,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DropdownModule
   ],
   exports: [
     AdminComponent
+  ],
+  providers: [
+    CategoryService,
+    ProdutosService,
+    UserService,
+    DialogService
   ]
+
 })
 export class ViewsModule { }

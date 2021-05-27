@@ -1,35 +1,30 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from 'uuid';
+import { Table, Column, Model, PrimaryKey, IsUUID, CreatedAt, Default, DataType } from 'sequelize-typescript'
 
-@Entity('orders')
-class Order {
+@Table
+class Order extends Model {
+    @IsUUID(4)
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column
+    id: string
 
-    @PrimaryColumn()
-    readonly id: string;
-
-    @Column()
+    @Column
     user_id: number;
 
-    @Column()
+    @Column
     product_id: number;
 
-    @Column()
+    @Column
     quantity: number;
 
-    @Column()
+    @Column
     status_id: number;
 
-    @Column()
+    @Column
     date: string;
 
-    @CreateDateColumn()
+    @CreatedAt
     created_at: Date;
-
-    constructor() {
-        if(!this.id)
-            this.id = uuid();
-    }
-
 }
 
-export { Order }
+export default Order;

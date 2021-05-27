@@ -1,17 +1,21 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from 'uuid';
+import { Table, HasMany, Column, Model, PrimaryKey, IsUUID, CreatedAt, Default, DataType, HasOne, ForeignKey } from 'sequelize-typescript'
+import User from './User';
 
-@Entity('profiles')
-class Profile {
+@Table
+class Profile extends Model {
+    
+    @PrimaryKey
+    @Column
+    id: number
 
-    @PrimaryColumn()
-    readonly id: number;
-
-    @Column()
+    @Column
     profile: string;
 
-    @CreateDateColumn()
+    @HasMany(() => User)
+    users: User[]
+    
+    @CreatedAt
     created_at: Date;
 }
 
-export { Profile }
+export default Profile;
