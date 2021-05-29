@@ -7,7 +7,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ViewsModule } from './../views/views.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { PagesModule } from '../pages/pages.module';
-import { PerfilModule } from '../components/perfil/perfil.module';
 import { FooterModule } from '../components/footer/footer.module';
 import { RequestTokenInterceptor } from './auth/interceptors/request-token.interceptor';
 import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
@@ -23,7 +22,6 @@ import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
 
     ViewsModule,
     PagesModule,
-    PerfilModule,
     FooterModule
   ],
   exports: [

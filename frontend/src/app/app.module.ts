@@ -12,16 +12,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ViewsModule } from './views/views.module';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
-import { PerfilComponent } from './components/perfil/perfil.component';
-import { TabelaComponent } from './components/tabela/tabela.component';
-import { ModalComponent } from './components/modal/modal.component';
 import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TabelaComponent,
-    ModalComponent,
   ],
   imports: [
     BrowserModule,
