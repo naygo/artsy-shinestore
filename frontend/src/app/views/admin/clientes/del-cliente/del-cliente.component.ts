@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-del-cliente',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DelClienteComponent implements OnInit {
 
-  constructor() { }
+  item;
+
+  constructor(
+    public ref: DynamicDialogRef,
+    private config: DynamicDialogConfig,
+  ) { }
 
   ngOnInit(): void {
+    this.item = this.config.data;
+  }
+
+  cancel() {
+    this.ref.close();
+  }
+
+  confirm() {
+    this.ref.close(this.item.id);
   }
 
 }

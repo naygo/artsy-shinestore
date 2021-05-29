@@ -30,10 +30,13 @@ export class EditCategoriaComponent implements OnInit {
 
   salvar() {
     const category = this.form.get('category').value;
+    
+    const dados = {
+      id: this.item.id,
+      category
+    }
 
-    this.categoryService.editCategory(this.item.id, category).subscribe(() =>{
-      this.ref.close();
-    })
+    this.ref.close(dados);
   }
 
 }

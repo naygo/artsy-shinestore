@@ -8,6 +8,7 @@ import { AddCategoriaComponent } from './add-categoria/add-categoria.component';
 import { EditCategoriaComponent } from './edit-categoria/edit-categoria.component';
 import { DelCategoriaComponent } from './del-categoria/del-categoria.component';
 import { Category } from 'src/app/shared/models/category.model';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -25,8 +26,9 @@ export class CategoriasComponent implements OnInit {
   constructor(
     private categoriesService: CategoryService,
     public dialog: MatDialog,
-    public dialogService: DialogService
-  ) {}
+    public dialogService: DialogService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
 
@@ -51,25 +53,45 @@ export class CategoriasComponent implements OnInit {
 
   loadCategories() {
     this.categoriesService.getAllCategories()
-    .subscribe((categories: Category[]) => {
-      this.categories = categories;
-      this.dataSource = new MatTableDataSource(categories);
-    })
+      .subscribe((categories: Category[]) => {
+        this.categories = categories;
+        this.dataSource = new MatTableDataSource(categories);
+      })
   }
 
   addCategoria() {
     const ref = this.dialogService.open(AddCategoriaComponent, {
-        header: 'Adicionar categoria',
-        width: '70%'
+      header: 'Adicionar categoria',
+      width: '50%'
     });
+
+    ref.onClose.subscribe(resp => {
+      if (resp) {
+        this.categoriesService.addCategory(resp).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: 'Categoria criada com sucesso' });
+        }, err => {
+          this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Não foi possível concluir a operação' });
+        });
+      }
+    })
   }
 
   editCategoria(element) {
     const ref = this.dialogService.open(EditCategoriaComponent, {
       data: element,
       header: 'Editar categoria',
-      width: '70%',
+      width: '50%',
     });
+
+    ref.onClose.subscribe(resp => {
+      if (resp) {
+        this.categoriesService.editCategory(resp.id, resp.category).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: 'Categoria editada com sucesso' });
+        }, err => {
+          this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Não foi possível concluir a operação' });
+        });
+      }
+    })
   }
 
   delCategoria(element) {
@@ -78,6 +100,20 @@ export class CategoriasComponent implements OnInit {
       header: 'Deseja deletar essa categoria',
       width: '50%'
     });
+
+    ref.onClose.subscribe(resp => {
+      if (resp) {
+        this.categoriesService.delCategory(resp).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: 'Categoria deletada com sucesso' });
+        }, err => {
+          this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Não foi possível concluir a operação' });
+        });
+      }
+    })
+  }
+
+  onReject() {
+    this.messageService.clear('c');
   }
 
 }

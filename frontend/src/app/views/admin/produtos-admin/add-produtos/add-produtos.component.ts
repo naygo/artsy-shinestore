@@ -110,8 +110,14 @@ export class AddProdutosComponent implements OnInit {
     const img_link = this.image64;
     const category = this.form.get('category').value.id;
    
-    this.produtosService.addProduct(name, value, description, img_link, category).subscribe(() => {
-      this.ref.close();
-    })
+    const dados = {
+      name,
+      value,
+      description,
+      img_link,
+      category
+    }
+
+    this.ref.close(dados);
   }
 }

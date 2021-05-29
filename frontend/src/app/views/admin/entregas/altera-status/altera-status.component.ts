@@ -28,8 +28,10 @@ export class AlteraStatusComponent implements OnInit {
   }
 
   confirm() {
-    this.orderService.changeStatus(this.item.item.id, this.item.status).subscribe(() => {
-      this.ref.close();
-    })
+    const dados = {
+      id: this.item.item.id, 
+      status: this.item.status
+    }
+    this.ref.close(dados);
   }
 }

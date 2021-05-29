@@ -8,7 +8,6 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ProductsComponent } from './views/cliente/products/products.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AdminComponent } from './views/admin/admin.component';
 
 import { AdminGuard } from './core/guards/admin.guard';
 import { ClienteGuard } from './core/guards/cliente.guard';
@@ -42,7 +41,7 @@ const routes: Routes = [
       { path: 'produtos-admin', component: ProdutosAdminComponent },
       { path: 'clientes', component: ClientesComponent },
       { path: 'categorias', component: CategoriasComponent },
-      { path: 'entregas', component: EntregasComponent }
+      { path: 'encomendas', component: EntregasComponent }
     ]
   },
   {

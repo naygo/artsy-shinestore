@@ -13,7 +13,6 @@ export class DelCategoriaComponent implements OnInit {
 
   constructor(
     public ref: DynamicDialogRef,
-    private categoryService: CategoryService,
     private config: DynamicDialogConfig,
   ) { }
 
@@ -26,12 +25,7 @@ export class DelCategoriaComponent implements OnInit {
   }
 
   confirm() {
-    this.categoryService.delCategory(this.item.id).subscribe(() => {
-      this.ref.close();
-
-    }, err => {
-      console.log(err);
-    })
+    this.ref.close(this.item.id);
   }
 
 }

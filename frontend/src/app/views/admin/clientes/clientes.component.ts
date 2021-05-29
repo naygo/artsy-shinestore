@@ -4,6 +4,8 @@ import { UserService } from 'src/app/shared/services/user.service';
 import {MatTableDataSource} from '@angular/material/table';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DelClienteComponent } from './del-cliente/del-cliente.component';
+import { MessageService } from 'primeng/api';
+import { finalize } from 'rxjs/operators';
 
 export interface Clientes {
   name: string;
@@ -28,7 +30,8 @@ export class ClientesComponent implements OnInit{
 
   constructor(
     private userService: UserService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +57,20 @@ export class ClientesComponent implements OnInit{
       data: element,
       header: 'Deseja deletar esse cliente?',
       width: '50%'
+    });
+
+    ref.onClose.subscribe(resp => {
+      if (resp) {
+        this.userService.delCategory(resp)
+        .pipe(finalize(() => {
+          this.loadClientes();
+        }))
+        .subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: 'Usuário deletado com sucesso' });
+        }, err => {
+          this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Não foi possível concluir a operação' });
+        });
+      }
     });
   }
 }

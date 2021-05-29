@@ -6,7 +6,8 @@ import jwt from 'jwt-decode';
 import { User } from '../interfaces/User';
 import { AuthService } from '../../core/auth/auth.service';
 import { TokenService } from '../../core/token/token.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 const API_URL = environment.API_URL;
 
@@ -16,8 +17,7 @@ const API_URL = environment.API_URL;
 export class UserService {
 
   private userSubject = new BehaviorSubject<User>(null);
-  // private id: number;
-  // private userName: string;
+  private updateUsers$ = new Subject<void>();
   private typeProfileLogged: string;
   public nameLogged: string;
   public idLogged: number;
@@ -34,8 +34,6 @@ export class UserService {
     const token = this.tokenService.getToken();
     const user = jwt(token) as User;
 
-    // this.id = user.id;
-    // this.userName = user.name;
     this.typeProfileLogged = user.profile;
     this.nameLogged = user.name;
     this.idLogged = user.id;
@@ -64,9 +62,9 @@ export class UserService {
   getUser(id: string) {
     return this.http.get(API_URL + `/users/${ id }`);
   }
-
-  getAllUsers() {
-    return this.http.get(API_URL + '/users');
+  
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(API_URL + '/users');
   }
 
   register(name: string, email:string, password: string, profile_id = 2) {
@@ -75,5 +73,11 @@ export class UserService {
 
   login(email: string, password: string) {
     return this.http.post(API_URL + '/login', { email, password });
+  }
+
+  delCategory(id: string): Observable<void> {
+    return this.http.delete<void>(API_URL + `/users/${ id }`).pipe(
+      finalize(()=> this.updateUsers$.next())
+    );
   }
 }

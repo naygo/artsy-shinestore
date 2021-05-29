@@ -113,19 +113,19 @@ export class EditProdutosComponent implements OnInit {
     const img_link = this.image64;
     const category = this.form.get('category').value.id;
 
-    if (!category) {
-      this.produtosService
-        .editProduct(this.item.id, name, value, description, img_link, this.item.category.id)
-        .subscribe(() => {
-          this.ref.close();
-        })
-    } else {
-      this.produtosService
-        .editProduct(this.item.id, name, value, description, img_link, category)
-        .subscribe(() => {
-          this.ref.close();
-        })
+    const dados = {
+      name,
+      value,
+      description,
+      img_link,
+      category
     }
+
+    if (!category) {
+      dados.category = this.item.id
+    }
+
+    this.ref.close(dados);
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { finalize } from 'rxjs/operators';
 import { OrdersService } from 'src/app/shared/services/orders.service';
 import { AlteraStatusComponent } from './altera-status/altera-status.component';
 
@@ -14,7 +16,7 @@ export class EntregasComponent implements OnInit {
   orders: any[] = [];
   dataSource;
   displayedColumns: string[] = ['product', 'quantity', 'user', 'data', 'actions'];
-  resp; 
+  resp;
 
   acoes = [
     { labe: 'editar', value: 'pi pi-editar' },
@@ -23,11 +25,12 @@ export class EntregasComponent implements OnInit {
 
   constructor(
     private ordersService: OrdersService,
-    public dialogService: DialogService
-  ) {}
+    public dialogService: DialogService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
-    this.loadOrders();    
+    this.loadOrders();
   }
 
   applyFilter(event: Event) {
@@ -58,7 +61,17 @@ export class EntregasComponent implements OnInit {
     });
 
     ref.onClose.subscribe(resp => {
-      this.loadOrders();
+      if (resp) {
+        this.ordersService.changeStatus(resp.id, resp.status)
+          .pipe(finalize(() => {
+            this.loadOrders();
+          }))
+          .subscribe(() => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: 'Status alterado com sucesso' });
+          }, err => {
+            this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Não foi possível concluir a operação' });
+          });
+      }
     })
   }
 }

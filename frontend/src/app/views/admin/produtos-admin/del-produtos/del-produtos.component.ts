@@ -26,12 +26,7 @@ export class DelProdutosComponent implements OnInit {
   }
 
   confirm() {
-    this.produtoService.delProduct(this.item.id).subscribe(() => {
-      this.ref.close();
-
-    }, err => {
-      console.log(err);
-    })
+    this.ref.close(this.item.id);
   }
 
 }

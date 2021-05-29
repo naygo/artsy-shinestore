@@ -11,7 +11,6 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 
-import { AdminComponent } from './admin/admin.component';
 import { ClientesComponent } from './admin/clientes/clientes.component';
 import { CategoriasComponent } from './admin/categorias/categorias.component';
 import { EntregasComponent } from './admin/entregas/entregas.component';
@@ -34,10 +33,10 @@ import { InfoProdutoComponent } from './cliente/products/info-produto/info-produ
 import { EncomendarComponent } from './cliente/products/encomendar/encomendar.component';
 import { AlteraStatusComponent } from './admin/entregas/altera-status/altera-status.component';
 import { ClienteEncomendasComponent } from './cliente/cliente-encomendas/cliente-encomendas.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
-    AdminComponent,
     ClientesComponent,
     CategoriasComponent,
     EntregasComponent,
@@ -70,14 +69,12 @@ import { ClienteEncomendasComponent } from './cliente/cliente-encomendas/cliente
     DropdownModule,
     InputTextModule,
   ],
-  exports: [
-    AdminComponent
-  ],
   providers: [
     CategoryService,
     ProdutosService,
     UserService,
-    DialogService
+    DialogService,
+    MessageService
   ]
 
 })
