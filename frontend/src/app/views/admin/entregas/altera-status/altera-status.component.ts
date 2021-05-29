@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { OrdersService } from 'src/app/shared/services/orders.service';
 
@@ -14,7 +15,8 @@ export class AlteraStatusComponent implements OnInit {
   constructor(
     public ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {

@@ -38,9 +38,7 @@ export class OrdersService {
     );
   }
 
-  // delCategory(id: string): Observable<void> {
-  //   return this.http.delete<void>(API_URL + `/categories/${ id }`).pipe(
-  //     finalize(()=> this.updateCategories$.next())
-  //   );
-  // }
+  findUserOrders(user_id): Observable<any> {
+    return this.http.get(API_URL + `/orders/${ user_id }`);
+  }
 }

@@ -18,6 +18,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { LoginGuard } from './core/guards/login.guard';
 import { ProdutosAdminComponent } from './views/admin/produtos-admin/produtos-admin.component';
 import { EntregasComponent } from './views/admin/entregas/entregas.component';
+import { ClienteEncomendasComponent } from './views/cliente/cliente-encomendas/cliente-encomendas.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: 'inicio', component: HomeComponent },
       { path: 'produtos', component: ProductsComponent },
       { path: 'contato', component: ContactComponent },
+      { path: 'encomendas', component: ClienteEncomendasComponent }
     ]
   }
 ];

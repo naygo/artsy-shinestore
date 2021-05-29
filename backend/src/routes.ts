@@ -33,6 +33,7 @@ router.put('/categories/:id', authMiddleware, categoryController.update);
 router.delete('/categories/:id', authMiddleware, categoryController.delete);
 
 router.get('/orders', authMiddleware, orderController.index);
+router.get('/orders/:user_id', authMiddleware, orderController.findUserOrders);
 router.post('/orders/:user_id/:product_id', authMiddleware, orderController.create);
 router.put('/orders/:order_id/:status_id', authMiddleware, orderController.changeStatus);
 

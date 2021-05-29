@@ -14,6 +14,7 @@ export class EntregasComponent implements OnInit {
   orders: any[] = [];
   dataSource;
   displayedColumns: string[] = ['product', 'quantity', 'user', 'data', 'actions'];
+  resp; 
 
   acoes = [
     { labe: 'editar', value: 'pi pi-editar' },
@@ -55,6 +56,9 @@ export class EntregasComponent implements OnInit {
       header: 'Deseja alterar o status?',
       width: '50%'
     });
-  }
 
+    ref.onClose.subscribe(resp => {
+      this.loadOrders();
+    })
+  }
 }

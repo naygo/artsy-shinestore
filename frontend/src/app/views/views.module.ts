@@ -33,6 +33,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InfoProdutoComponent } from './cliente/products/info-produto/info-produto.component';
 import { EncomendarComponent } from './cliente/products/encomendar/encomendar.component';
 import { AlteraStatusComponent } from './admin/entregas/altera-status/altera-status.component';
+import { ClienteEncomendasComponent } from './cliente/cliente-encomendas/cliente-encomendas.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AlteraStatusComponent } from './admin/entregas/altera-status/altera-sta
     InfoProdutoComponent,
     EncomendarComponent,
     AlteraStatusComponent,
+    ClienteEncomendasComponent,
   ],
   imports: [
     CommonModule,

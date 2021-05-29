@@ -33,10 +33,22 @@
         <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell *matCellDef="let element">
             <div class="row">
-                <button (click)="alteraStatus(element, 0)" class="espera acoes"></button>
-                <button (click)="alteraStatus(element, 1)" class="andamento acoes"></button>
-                <button (click)="alteraStatus(element, 2)" class="concluido acoes"></button>
-                <button (click)="alteraStatus(element, 3)" class="cancelado acoes"></button>
+                <button (click)="alteraStatus(element, 0)" 
+                  class="espera acoes"
+                  [ngClass]="element.status.id == 0 ? 'ativo': ''">
+                </button>
+                <button (click)="alteraStatus(element, 1)" 
+                  class="andamento acoes"
+                  [ngClass]="element.status.id == 1 ? 'ativo': ''">
+                </button>
+                <button (click)="alteraStatus(element, 2)" 
+                  class="concluido acoes"
+                  [ngClass]="element.status.id == 2 ? 'ativo': ''">
+                </button>
+                <button (click)="alteraStatus(element, 3)" 
+                  class="acoes cancelado"
+                  [ngClass]="element.status.id == 3 ? 'ativo': ''">
+                </button>
             </div>
         </td>
       </ng-container>

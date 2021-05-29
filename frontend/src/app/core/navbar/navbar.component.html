@@ -1,59 +1,3 @@
-<!-- <header class="container" id="topo">
-  <nav class="row">
-
-    <div class="col logo">
-      <img src="../../../assets/logo.png" alt="Logo">
-    </div>
-
-    <div class="col" [ngSwitch]="profile">
-
-      <div *ngSwitchCase="undefined">
-        <div class="links-botao">
-          <div class="links">
-            <a routerLink="/">Início</a>
-            <a routerLink="/produtos">Produtos</a>
-            <a routerLink="/contato">Contato</a>
-          </div>
-
-          <div>
-            <button routerLink="login" class="confirm">ENTRAR</button>
-          </div>
-        </div>
-      </div>
-
-      <div *ngSwitchCase="'Admin'">
-        <div class="links-botao">
-          <div class="links">
-            <a [routerLink]="['produtos']">Produtos</a>
-            <a [routerLink]="['categorias']">Categorias</a>
-            <a [routerLink]="['entregas']">Entregas</a>
-            <a [routerLink]="['clientes']">Clientes</a>
-          </div>
-
-          <div>
-            <button (click)="logout()" class="cancel">SAIR</button>
-          </div>
-        </div>
-      </div>
-
-      <div *ngSwitchCase="'Cliente'">
-        <div class="links-botao">
-          <div class="links">
-            <a [routerLink]="['']">Início</a>
-            <a [routerLink]="['produtos']">Produtos</a>
-            <a [routerLink]="['contato']">Contato</a>
-          </div>
-
-          <div>
-            <button (click)="logout()" class="cancel">SAIR</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </nav>
-</header> -->
-
 <header class="container-fluid">
 
   <nav class="navbar navbar-expand-lg">
@@ -115,6 +59,9 @@
           </li>
           <li class="nav-item">
             <a [routerLink]="['contato']">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['encomendas']">Minhas encomendas</a>
           </li>
         </ul>
 

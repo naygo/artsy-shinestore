@@ -1,4 +1,4 @@
-import { getCustomRepository } from 'typeorm';
+import { getConnection, getCustomRepository } from 'typeorm';
 import { Request, Response } from 'express';
 import { OrderRepository } from '../repositories/OrderRepository';
 import { ProductsRepository } from '../repositories/ProductsRepository';
@@ -10,6 +10,18 @@ class OrderController {
         const orderRepository = getCustomRepository(OrderRepository);
 
         const orders = await orderRepository.find();
+
+        return res.status(200).json(orders);
+    }
+
+    async findUserOrders(req: Request, res: Response) {
+        const { user_id } = req.params;
+        
+        const userRepository = getCustomRepository(UsersRepository);
+        const user = await userRepository.findOne({ where: { id: user_id } })
+
+        const orderRepository= getCustomRepository(OrderRepository);
+        const orders = await orderRepository.find({ where: { user }})
 
         return res.status(200).json(orders);
     }
