@@ -40,10 +40,18 @@ export class EncomendarComponent implements OnInit {
     const user_id = this.userService.idLogged;
     const product_id = this.item.id;
 
-    this.ordersService.addOrder(quantity, date, user_id, product_id).subscribe(() => {
-      this.ref.close();
-    })
-    
+    const dados = {
+      quantity,
+      date,
+      user_id,
+      product_id
+    }
+
+    // this.ordersService.addOrder(quantity, date, user_id, product_id).subscribe(() => {
+    //   this.ref.close();
+    // })
+
+    this.ref.close(dados);    
   }
 
 }

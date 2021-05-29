@@ -112,3 +112,8 @@
     margin-top: 100px;
   }
   
+  .botao {
+    display: flex;
+    justify-content: center;
+  }
+  

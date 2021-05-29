@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { OrdersService } from 'src/app/shared/services/orders.service';
 import { ProdutosService } from 'src/app/shared/services/produtos.service';
 import { InfoProdutoComponent } from './info-produto/info-produto.component';
 
@@ -34,7 +36,9 @@ export class ProductsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private produtosService: ProdutosService,
     public dialog: MatDialog,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private ordersService: OrdersService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -64,11 +68,21 @@ export class ProductsComponent implements OnInit {
   }
 
   infoProduto(produto) {
-    
+
     const ref = this.dialogService.open(InfoProdutoComponent, {
       data: produto,
       width: '50%'
-    })
+    });
+
+    ref.onClose.subscribe(resp => {
+      console.log(resp);
+      // this.ordersService.addOrder(resp.quantity, resp.date, resp.user_id, resp.product_id)
+      //   .subscribe(() => {
+      //     this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: 'Encomenda feita com sucesso' });
+      //   }, err => {
+      //     this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Não foi possível concluir a operação' });
+      //   });
+    });
   }
 
   sendForm() {
