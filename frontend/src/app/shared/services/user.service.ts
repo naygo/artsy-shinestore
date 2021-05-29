@@ -20,6 +20,7 @@ export class UserService {
   // private userName: string;
   private typeProfileLogged: string;
   public nameLogged: string;
+  public idLogged: number;
 
   constructor(
     private http: HttpClient,
@@ -37,6 +38,7 @@ export class UserService {
     // this.userName = user.name;
     this.typeProfileLogged = user.profile;
     this.nameLogged = user.name;
+    this.idLogged = user.id;
     this.userSubject.next(user);
   }
 

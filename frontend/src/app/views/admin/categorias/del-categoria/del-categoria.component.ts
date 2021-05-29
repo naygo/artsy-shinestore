@@ -27,7 +27,6 @@ export class DelCategoriaComponent implements OnInit {
 
   confirm() {
     this.categoryService.delCategory(this.item.id).subscribe(() => {
-      console.log('deletou')
       this.ref.close();
 
     }, err => {

@@ -34,3 +34,7 @@ input {
     margin: 0.5rem;
   }
   
+  img {
+    width: 80px;
+    padding: 5px;
+  }

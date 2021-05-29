@@ -9,7 +9,7 @@ export class Status1614890043311 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'integer',
+                        type: 'int',
                         isPrimary: true
                     }, 
                     {
@@ -28,6 +28,7 @@ export class Status1614890043311 implements MigrationInterface {
         await queryRunner.manager.createQueryBuilder().insert()
         .into('status')
         .values([
+            { id: 0, status: 'Em espera' },
             { id: 1, status: 'Cancelada' },
             { id: 2, status: 'Iniciado' },
             { id: 3, status: 'Concluída' }
@@ -35,6 +36,5 @@ export class Status1614890043311 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('status');
     }
 }

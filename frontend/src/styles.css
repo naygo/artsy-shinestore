@@ -123,3 +123,13 @@ table {
 table th {
   color: var(--yellow);
 }
+
+.p-button {
+  background: var(--yellow) !important;
+  border: 0 !important;
+}
+
+.p-button:hover {
+  background: var(--salmon) !important; 
+  transition: 0.2s;
+}

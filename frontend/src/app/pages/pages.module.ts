@@ -6,7 +6,7 @@ import { UserService } from '../shared/services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from '../views/cliente/products/products.component';
 import { RegisterComponent } from './register/register.component';
 
 import { InputTextModule } from 'primeng/inputtext';

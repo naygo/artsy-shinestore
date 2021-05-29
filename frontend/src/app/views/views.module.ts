@@ -11,9 +11,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 
-
 import { AdminComponent } from './admin/admin.component';
-import { ClienteComponent } from './cliente/cliente.component';
 import { ClientesComponent } from './admin/clientes/clientes.component';
 import { CategoriasComponent } from './admin/categorias/categorias.component';
 import { EntregasComponent } from './admin/entregas/entregas.component';
@@ -29,11 +27,16 @@ import { ProdutosService } from '../shared/services/produtos.service';
 import { UserService } from '../shared/services/user.service';
 import { AddProdutosComponent } from './admin/produtos-admin/add-produtos/add-produtos.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { DelProdutosComponent } from './admin/produtos-admin/del-produtos/del-produtos.component';
+import { EditProdutosComponent } from './admin/produtos-admin/edit-produtos/edit-produtos.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { InfoProdutoComponent } from './cliente/products/info-produto/info-produto.component';
+import { EncomendarComponent } from './cliente/products/encomendar/encomendar.component';
+import { AlteraStatusComponent } from './admin/entregas/altera-status/altera-status.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
-    ClienteComponent,
     ClientesComponent,
     CategoriasComponent,
     EntregasComponent,
@@ -43,6 +46,11 @@ import { DropdownModule } from 'primeng/dropdown';
     DelClienteComponent,
     ProdutosAdminComponent,
     AddProdutosComponent,
+    DelProdutosComponent,
+    EditProdutosComponent,
+    InfoProdutoComponent,
+    EncomendarComponent,
+    AlteraStatusComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +65,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    DropdownModule
+    DropdownModule,
+    InputTextModule,
   ],
   exports: [
     AdminComponent

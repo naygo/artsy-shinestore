@@ -9,7 +9,7 @@ export class Profiles1614888496614 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'uuid',
+                        type: 'int',
                         isPrimary: true
                     }
                     ,{
@@ -35,6 +35,5 @@ export class Profiles1614888496614 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('profiles');
     }
 }

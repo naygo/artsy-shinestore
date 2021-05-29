@@ -103,23 +103,14 @@ export class AddProdutosComponent implements OnInit {
   }
 
   async salvar() {
-
-    const res = await fetch(this.image64)
-    const blobVal = await res.blob()
-    console.log(blobVal)
-
-    const dados = [
-      {
-        name: this.form.get('name').value,
-        value: this.form.get('value').value,
-        description: this.form.get('description').value,
-        img_link: blobVal,
-        category_id: this.form.get('category').value.id
-      }
-    ]
-
-    this.produtosService.addProduct(dados).subscribe(() => {
-      console.log('subscribe');      
+    
+    const name = this.form.get('name').value;
+    const value = this.form.get('value').value;
+    const description = this.form.get('description').value;
+    const img_link = this.image64;
+    const category = this.form.get('category').value.id;
+   
+    this.produtosService.addProduct(name, value, description, img_link, category).subscribe(() => {
       this.ref.close();
     })
   }

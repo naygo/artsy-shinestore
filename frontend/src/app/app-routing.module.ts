@@ -5,11 +5,10 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
-import { ProductsComponent } from './pages/products/products.component';
+import { ProductsComponent } from './views/cliente/products/products.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './views/admin/admin.component';
-import { ClienteComponent } from './views/cliente/cliente.component';
 
 import { AdminGuard } from './core/guards/admin.guard';
 import { ClienteGuard } from './core/guards/cliente.guard';
@@ -18,6 +17,7 @@ import { CategoriasComponent } from './views/admin/categorias/categorias.compone
 import { AuthGuard } from './core/guards/auth.guard';
 import { LoginGuard } from './core/guards/login.guard';
 import { ProdutosAdminComponent } from './views/admin/produtos-admin/produtos-admin.component';
+import { EntregasComponent } from './views/admin/entregas/entregas.component';
 
 const routes: Routes = [
   {
@@ -40,7 +40,8 @@ const routes: Routes = [
       { path: 'inicio', component: HomeComponent },
       { path: 'produtos-admin', component: ProdutosAdminComponent },
       { path: 'clientes', component: ClientesComponent },
-      { path: 'categorias', component: CategoriasComponent }
+      { path: 'categorias', component: CategoriasComponent },
+      { path: 'entregas', component: EntregasComponent }
     ]
   },
   {

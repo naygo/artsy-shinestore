@@ -1,0 +1,24 @@
+img {
+    width: 200px;
+}
+
+h3 {
+    color: var(--salmon);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+h4 {
+    color: var(--pink);
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+button {
+    width: 8rem;
+}

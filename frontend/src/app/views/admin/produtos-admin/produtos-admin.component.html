@@ -1,8 +1,8 @@
 <main class="container">
     <div class="input-button">
-      <h1>GERENCIAR CATEGORIAS</h1>
+      <h1>GERENCIAR PRODUTOS</h1>
   
-      <button type="button" (click)="addProduto()" pButton label="Adicionar categoria"></button>
+      <button type="button" (click)="addProduto()" pButton label="Adicionar produto"></button>
     </div>
   
       <mat-form-field>
@@ -30,7 +30,7 @@
 
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef>Categoria</th>
-        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.category.category}} </td>
       </ng-container>
 
       <ng-container matColumnDef="value">
@@ -42,7 +42,7 @@
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">
           <div class="acoes">
-            <button (click)="editCategoria(element)">
+            <button (click)="editProduto(element)">
               <i class="pi pi-pencil"></i>
             </button>
             <button (click)="delCategoria(element)">

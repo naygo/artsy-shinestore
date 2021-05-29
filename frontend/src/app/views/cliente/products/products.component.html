@@ -25,28 +25,8 @@
 
   <section class="cards">
     <div class="produtos-listagem">
-      <div>
-        <img src="../../../assets/imagem1.png" alt="">
-      </div>
-
-      <div>
-        <img src="../../../assets/imagem2.jpg" alt="">
-      </div>
-
-      <div>
-        <img src="../../../assets/imagem1.png" alt="">
-      </div>
-
-      <div>
-        <img src="../../../assets/imagem1.png" alt="">
-      </div>
-
-      <div>
-        <img src="../../../assets/imagem2.jpg" alt="">
-      </div>
-
-      <div>
-        <img src="../../../assets/imagem1.png" alt="">
+      <div *ngFor="let produto of products">
+        <img (click)="infoProduto(produto)" src="{{produto.img_link}}" alt="">
       </div>
     </div>
   </section>

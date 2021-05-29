@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProdutosService } from 'src/app/shared/services/produtos.service';
 import { AddProdutosComponent } from './add-produtos/add-produtos.component';
+import { DelProdutosComponent } from './del-produtos/del-produtos.component';
+import { EditProdutosComponent } from './edit-produtos/edit-produtos.component';
 
 @Component({
   selector: 'app-produtos-admin',
@@ -21,7 +23,7 @@ export class ProdutosAdminComponent implements OnInit {
     private produtosService: ProdutosService,
     public dialog: MatDialog,
     public dialogService: DialogService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
@@ -46,26 +48,32 @@ export class ProdutosAdminComponent implements OnInit {
 
   loadProdutos() {
     this.produtosService.getAllProducts()
-    .subscribe((products) => {
-      console.log(products);
-      
-      this.products = products;
-      this.dataSource = new MatTableDataSource(products);
-    })
+      .subscribe((products) => {
+        this.products = products;
+        this.dataSource = new MatTableDataSource(products);
+      })
   }
 
   addProduto() {
     const ref = this.dialogService.open(AddProdutosComponent, {
       header: 'Adicionar produto',
       width: '70%'
-  })
+    })
   }
 
-  editCategoria(element) {
-    
+  editProduto(element) {
+    const ref = this.dialogService.open(EditProdutosComponent, {
+      data: element,
+      header: 'Editar produto',
+      width: '70%'
+    })
   }
 
   delCategoria(element) {
-    
+    const ref = this.dialogService.open(DelProdutosComponent, {
+      data: element,
+      header: 'Deletar produto',
+      width: '70%'
+    })
   }
 }

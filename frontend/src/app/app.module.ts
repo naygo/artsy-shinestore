@@ -15,6 +15,7 @@ import { PagesModule } from './pages/pages.module';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { TabelaComponent } from './components/tabela/tabela.component';
 import { ModalComponent } from './components/modal/modal.component';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ModalComponent } from './components/modal/modal.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    ButtonModule,
+    
     PagesModule,
     CoreModule,
     ViewsModule

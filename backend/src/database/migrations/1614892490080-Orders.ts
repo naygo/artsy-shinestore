@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableColumn, TableForeignKey} from "typeorm";
 
 export class Orders1614892490080 implements MigrationInterface {
 
@@ -13,21 +13,8 @@ export class Orders1614892490080 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: 'user_id',
-                        type: 'uuid'
-                    },
-                    {
-                        name: 'product_id',
-                        type: 'uuid'
-                    },
-                    {
                         name: 'quantity',
                         type: 'integer'
-                    },
-                    {
-                        name: 'status_id',
-                        type: 'integer',
-                        isNullable: true
                     },
                     {
                         name: 'date',
@@ -38,39 +25,54 @@ export class Orders1614892490080 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()'
                     },
-                ],
-                foreignKeys: [
-                    {
-                        name: 'FKUser',
-                        referencedTableName: 'users',
-                        referencedColumnNames: ['id'],
-                        columnNames: ['user_id'],
-                        onDelete: 'CASCADE',
-                        onUpdate: 'CASCADE'
-                    },
-                    {
-                        name: 'FKProduct',
-                        referencedTableName: 'products',
-                        referencedColumnNames: ['id'],
-                        columnNames: ['product_id'],
-                        onDelete: 'CASCADE',
-                        onUpdate: 'CASCADE'
-                    },
-                    {
-                        name: 'FKStatus',
-                        referencedTableName: 'status',
-                        referencedColumnNames: ['id'],
-                        columnNames: ['status_id'],
-                        onDelete: 'CASCADE',
-                        onUpdate: 'CASCADE'
-                    }
                 ]
             })
         );
+
+        await queryRunner.addColumn('orders', new TableColumn({
+            name: 'userId',
+            type: 'uuid'
+        }));
+
+        await queryRunner.createForeignKey('orders', new TableForeignKey({
+            columnNames: ['userId'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'users',
+            onDelete: 'CASCADE'
+        }));
+
+        await queryRunner.addColumn('orders', new TableColumn({
+            name: 'productId',
+            type: 'uuid'
+        }));
+
+        await queryRunner.createForeignKey('orders', new TableForeignKey({
+            columnNames: ['productId'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'products',
+            onDelete: 'CASCADE'
+        }));
+
+        await queryRunner.addColumn('orders', new TableColumn({
+            name: 'statusId',
+            type: 'int'
+        }));
+
+        await queryRunner.createForeignKey('orders', new TableForeignKey({
+            columnNames: ['statusId'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'status',
+            onDelete: 'CASCADE'
+        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        const table = await queryRunner.getTable('orders');
+        const foreignKey:any = table?.foreignKeys.find(fk => fk.columnNames.indexOf('statusId') !== -1);
+        await queryRunner.dropForeignKey('orders', foreignKey);
+        await queryRunner.dropColumn('orders', 'statusId');
         await queryRunner.dropTable('orders');
+        await queryRunner.dropTable('status');    
     }
 
 }

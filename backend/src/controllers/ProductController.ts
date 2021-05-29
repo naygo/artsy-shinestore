@@ -9,7 +9,7 @@ const readFileAsync = util.promisify(readFileSync);
 class ProductController {
 
     async index(req: Request, res: Response) {
-        
+
         const productsRepository = getCustomRepository(ProductsRepository);
 
         const products = await productsRepository.find();
@@ -19,45 +19,49 @@ class ProductController {
 
 
     async create(req: Request, res: Response) {
-        const { name, value, img_link, description, category_id } = req.body; 
-        
-        console.log(req.body);
-                
+        const { name, value, img_link, description, category } = req.body;
+
         const productsRepository = getCustomRepository(ProductsRepository);
 
         const product = productsRepository.create({
-            name, 
-            value, 
+            name,
+            value,
             description,
-            img_link, 
-            category_id
+            img_link,
+            category
         });
 
         await productsRepository.save(product);
 
         return res.status(201).json(product);
-    } 
+    }
 
     async update(req: Request, res: Response) {
-        const { id } = req.params;
-        const { name, value, description, category_id } = req.body;
-        const fileName = req.file.path;
+        try {
+            const { id } = req.params;
+            const { name, value, img_link, description, category } = req.body;
+            
+            const productsRepository = getCustomRepository(ProductsRepository);
 
-        const productsRepository = getCustomRepository(ProductsRepository);
+            const product = await productsRepository.save({
+                id,
+                name,
+                value,
+                description,
+                img_link,
+                category
+            });
 
-        const product = productsRepository.update({ id }, {
-            name, 
-            value, 
-            description,
-            //img_link, 
-            category_id
-        });
+            return res.status(201).json(product);
 
-        return res.status(201).json(product);  
+        } catch (error) {
+            console.log(error.message);
+        }
+
     }
 
     async delete(req: Request, res: Response) {
-        
+
         const { id } = req.params;
 
         const productsRepository = getCustomRepository(ProductsRepository);
@@ -66,7 +70,7 @@ class ProductController {
 
         await productsRepository.delete(id);
 
-        return res.status(201).json(product);        
+        return res.status(201).json(product);
     }
 }
 

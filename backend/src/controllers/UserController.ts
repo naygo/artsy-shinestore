@@ -6,122 +6,170 @@ import * as yup from 'yup';
 import { config } from '../config/config';
 
 import { UsersRepository } from '../repositories/UsersRepository';
+import { ProfileRepository } from '../repositories/ProfileRepository';
 
 class UserController {
 
     async findAll(req: Request, res: Response) {
-        
-        const usersRepository = getCustomRepository(UsersRepository);
 
-        const users = await usersRepository.find();
+        try {
+            const usersRepository = getCustomRepository(UsersRepository);
 
-        return res.json(users);
+            const users = await usersRepository.find();
+
+            return res.json(users);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+
     }
 
     async findOne(req: Request, res: Response) {
-        const { id } = req.params;
-
-        const usersRepository = getCustomRepository(UsersRepository);
-
-        const user = await usersRepository.findOne(id);
-
-        return res.json(user);
-    }
-    
-    async create(req: Request, res: Response) {
-        const { profile_id } = req.params;
-        const { name, email, password } = req.body;
-
-        const usersRepository = getCustomRepository(UsersRepository);
-
-        const schema = yup.object().shape({
-            name: yup.string().required(),
-            email: yup.string().email().required(),
-            password: yup.string().required(),
-        });
 
         try {
-            await schema.validate(req.body, { abortEarly: false })
+            const { id } = req.params;
 
-        } catch (err) {
-            return res.status(400).json({ error: err });
+            const usersRepository = getCustomRepository(UsersRepository);
+
+            const user = await usersRepository.findOne(id);
+
+            return res.json(user);
+            
+        } catch (error) {
+            console.log(error);
+
         }
 
-        const userAlreadyExists = await usersRepository.findOne({
-            email
-        });
+    }
 
-        if(userAlreadyExists)
-            return res.status(400).json({error: 'User already exists!'});
+    async create(req: Request, res: Response) {
 
-        const user = usersRepository.create({
-            profile_id: +profile_id,
-            name, 
-            email,
-            password: await bcryptjs.hash(password, 10)
-        });
+        try {
+            const { profile_id } = req.params;
+            const { name, email, password } = req.body;
 
-        await usersRepository.save(user);
+            const usersRepository = getCustomRepository(UsersRepository);
 
-        return res.json(user);
+
+            const schema = yup.object().shape({
+                name: yup.string().required(),
+                email: yup.string().email().required(),
+                password: yup.string().required(),
+            });
+
+            const profileRepository = getCustomRepository(ProfileRepository);
+            const profile = await profileRepository.findOne({ where: { id: profile_id } });
+
+            try {
+                await schema.validate(req.body, { abortEarly: false })
+
+            } catch (err) {
+                return res.status(400).json({ error: err });
+            }
+
+            const userAlreadyExists = await usersRepository.findOne({
+                email
+            });
+
+            if (userAlreadyExists)
+                return res.status(400).json({ error: 'User already exists!' });
+
+            const user = usersRepository.create({
+                profile,
+                name,
+                email,
+                password: await bcryptjs.hash(password, 10)
+            });
+
+            await usersRepository.save(user);
+
+            return res.json(user);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
     }
 
     async login(req: Request, res: Response) {
-        const { email, password } = req.body;
 
-        const usersRepository = getCustomRepository(UsersRepository);
+        try {
+            const { email, password } = req.body;
 
-        const userExists = await usersRepository.findOne({ email });
-        
-        if(!userExists)
-            return res.status(400).json({error: 'User does not exists'});
+            const usersRepository = getCustomRepository(UsersRepository);
 
-        if (!await bcryptjs.compare(password, userExists.password))
-            return res.status(401).json({ error: 'Senha inválida, tente novamente!' });
+            const userExists = await usersRepository.findOne({ where: { email } });
 
-        return res.status(200).json({
-            userExists,
-            token: jwt.sign({
-                id: userExists.id,
-                name: userExists.name,
-                email,
-                profile: (userExists.profile_id == 1) ? 'Admin' : 'Cliente'
-            }, config.SECRET, { expiresIn: 3600 })
-        });
+            if (!userExists)
+                return res.status(400).json({ error: 'User does not exists' });
+
+            if (!await bcryptjs.compare(password, userExists.password))
+                return res.status(401).json({ error: 'Senha inválida, tente novamente!' });
+
+            return res.status(200).json({
+                userExists,
+                token: jwt.sign({
+                    id: userExists.id,
+                    name: userExists.name,
+                    email,
+                    profile: (userExists.profile.id == 1) ? 'Admin' : 'Cliente'
+                }, config.SECRET, { expiresIn: 3600 })
+            });
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
     }
 
-    async update (req: Request, res: Response) {
-        const { id } = req.params;
-        const { name, email, password } = req.body;
-//
-        const usersRepository = getCustomRepository(UsersRepository);
+    async update(req: Request, res: Response) {
 
-        const userExists = await usersRepository.findOne(id);
+        try {
+            const { id } = req.params;
+            const { name, email, password } = req.body;
 
-        if(!userExists)
-            return res.status(400).json({ error: 'User not found' });
+            const usersRepository = getCustomRepository(UsersRepository);
+
+            const userExists = await usersRepository.findOne(id);
+
+            if (!userExists)
+                return res.status(400).json({ error: 'User not found' });
 
 
-        await usersRepository.save({
-            name, 
-            email,
-            password: await bcryptjs.hash(password, 10)
-        });
+            await usersRepository.save({
+                name,
+                email,
+                password: await bcryptjs.hash(password, 10)
+            });
 
-        return res.status(201);
+            return res.status(201);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
     }
 
     async delete(req: Request, res: Response) {
-        
-        const { id } = req.params;
+        try {
+            const { id } = req.params;
 
-        const usersRepository = getCustomRepository(UsersRepository);
+            const usersRepository = getCustomRepository(UsersRepository);
 
-        const user = usersRepository.findOne(id);
+            const user = usersRepository.findOne(id);
 
-        await usersRepository.delete({id: id});
+            await usersRepository.delete({ id: id });
 
-        return res.status(201).json(user);        
+            return res.status(201).json(user);
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 };
 

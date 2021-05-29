@@ -1,0 +1,27 @@
+button {
+    border-radius: 50% !important;
+
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+.espera {
+    background: grey;
+}
+
+.andamento {
+    background: yellow;
+}
+
+.concluido {
+    background: green;
+}
+
+.cancelado {
+    background: red;
+}

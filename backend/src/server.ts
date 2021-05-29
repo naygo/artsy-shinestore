@@ -10,7 +10,7 @@ import { router } from './routes';
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: '99999999mb' }));
 app.use(cors());
 app.use('/static', express.static(__dirname + '/assets'));
 app.use(router);

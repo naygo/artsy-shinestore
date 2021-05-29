@@ -21,8 +21,8 @@ export class ProdutosService {
     return this.updateProducts$;
   }
 
-  addProduct(product): Observable<void> {
-    return this.http.post<void>(API_URL + '/products', { product }).pipe(
+  addProduct(name, value, description, img_link, category): Observable<void> {
+    return this.http.post<void>(API_URL + '/products', { name, value, img_link, description, category }).pipe(
       finalize(() => this.updateProducts$.next())
     );
   }
@@ -32,15 +32,15 @@ export class ProdutosService {
   }
 
 
-  editProduct(id: string, category: string): Observable<void> {
-    return this.http.put<void>(API_URL + `/products/${ id }`, { category }).pipe(
-      finalize(()=> this.updateProducts$.next())
+  editProduct(id, name, value, description, img_link, category): Observable<void> {
+    return this.http.put<void>(API_URL + `/products/${id}`, { name, value, img_link, description, category }).pipe(
+      finalize(() => this.updateProducts$.next())
     );
   }
 
   delProduct(id: string): Observable<void> {
-    return this.http.delete<void>(API_URL + `/products/${ id }`).pipe(
-      finalize(()=> this.updateProducts$.next())
+    return this.http.delete<void>(API_URL + `/products/${id}`).pipe(
+      finalize(() => this.updateProducts$.next())
     );
   }
 }

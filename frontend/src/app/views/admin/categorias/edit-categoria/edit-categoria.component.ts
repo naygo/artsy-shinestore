@@ -32,8 +32,6 @@ export class EditCategoriaComponent implements OnInit {
     const category = this.form.get('category').value;
 
     this.categoryService.editCategory(this.item.id, category).subscribe(() =>{
-      console.log('ola');
-
       this.ref.close();
     })
   }
