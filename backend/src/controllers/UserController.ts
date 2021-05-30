@@ -116,7 +116,7 @@ class UserController {
                     name: userExists.name,
                     email,
                     profile: (userExists.profile.id == 1) ? 'Admin' : 'Cliente'
-                }, config.SECRET, { expiresIn: 60 })
+                }, config.SECRET, { expiresIn: 36000 })
             });
 
         } catch (error) {
