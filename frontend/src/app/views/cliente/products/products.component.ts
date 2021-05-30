@@ -73,16 +73,6 @@ export class ProductsComponent implements OnInit {
       data: produto,
       width: '50%'
     });
-
-    ref.onClose.subscribe(resp => {
-      console.log(resp);
-      // this.ordersService.addOrder(resp.quantity, resp.date, resp.user_id, resp.product_id)
-      //   .subscribe(() => {
-      //     this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: 'Encomenda feita com sucesso' });
-      //   }, err => {
-      //     this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Não foi possível concluir a operação' });
-      //   });
-    });
   }
 
   sendForm() {
